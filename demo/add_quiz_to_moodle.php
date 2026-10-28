@@ -154,9 +154,9 @@ $q3Id = create_aisim_question(
 
 // 2. Kreiraj Kviz u Kursu 77 ako već ne postoji.
 $quizname = 'Kviz znanja: Praktične AI simulacije i optimizacija';
-$existingquiz = $DB->get_record('quiz', ['course' => $course->id, 'name' => $quizname]);
+$quiz = $DB->get_record('quiz', ['course' => $course->id, 'name' => $quizname]);
 
-if (!$existingquiz) {
+if (!$quiz) {
     echo "\nKreiranje novog kviza u kursu...\n";
     $quiz = new stdClass();
     $quiz->course = $course->id;
@@ -226,6 +226,14 @@ if (!$existingquiz) {
     course_add_cm_to_section($course->id, $cm->id, 1);
     $quiz->cmid = $cm->id;
 
+    // Kreiraj prvu sekciju u kvizu (OBAVEZNO ZA MOODLE QUIZ!)
+    $DB->insert_record('quiz_sections', [
+        'quizid' => $quiz->id,
+        'firstslot' => 1,
+        'heading' => '',
+        'shufflequestions' => 0
+    ]);
+
     // Dodaj pitanja u kviz
     quiz_add_quiz_question($q1Id, $quiz, 1, 1.0);
     quiz_add_quiz_question($q2Id, $quiz, 2, 1.0);
@@ -234,10 +242,35 @@ if (!$existingquiz) {
     echo "✓ Kviz je uspešno kreiran: ID={$quiz->id}, cmid={$cm->id}\n";
     $cmid = $cm->id;
 } else {
-    $cm = get_coursemodule_from_instance('quiz', $existingquiz->id, $course->id);
+    $cm = get_coursemodule_from_instance('quiz', $quiz->id, $course->id);
     $cmid = $cm->id;
-    echo "✓ Postojeći kviz: ID={$existingquiz->id}, cmid={$cmid}\n";
+    $quiz->cmid = $cmid;
+    $quiz->coursemodule = $cmid;
+    echo "✓ Postojeći kviz: ID={$quiz->id}, cmid={$cmid}\n";
+
+    // Proveri da li kviz ima sekciju u quiz_sections.
+    $hassection = $DB->record_exists('quiz_sections', ['quizid' => $quiz->id]);
+    if (!$hassection) {
+        $DB->insert_record('quiz_sections', [
+            'quizid' => $quiz->id,
+            'firstslot' => 1,
+            'heading' => '',
+            'shufflequestions' => 0
+        ]);
+        echo "  ✓ Dodata nedostajuća sekcija u quiz_sections za kviz ID={$quiz->id}\n";
+    }
+
+    // Obriši neispravne stare pokušaje koji su imali prazan layout pre dodavanja sekcije
+    $brokenattempts = $DB->get_records_select('quiz_attempts', "quiz = ? AND (layout IS NULL OR layout = '')", [$quiz->id]);
+    if ($brokenattempts) {
+        foreach ($brokenattempts as $ba) {
+            $DB->delete_records('quiz_attempts', ['id' => $ba->id]);
+            echo "  ✓ Obrisan neispravan prazan pokušaj ID={$ba->id}\n";
+        }
+    }
 }
+
+quiz_update_sumgrades($quiz);
 
 // Očisti keš kursa
 rebuild_course_cache($course->id, true);
