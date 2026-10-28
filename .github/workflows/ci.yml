@@ -1,0 +1,60 @@
+name: Moodle Plugin CI
+
+on:
+  push:
+    branches: [ master, main ]
+  pull_request:
+    branches: [ master, main ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        php: ['8.2', '8.3']
+        moodle-branch: ['MOODLE_405_STABLE', 'master']
+    steps:
+      - name: Checkout qtype_aisim
+        uses: actions/checkout@v4
+        with:
+          path: aisim
+
+      - name: Checkout filter_aisim dependency
+        uses: actions/checkout@v4
+        with:
+          repository: blagojevicboban/moodle-filter_aisim
+          path: filter_aisim
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php }}
+          extensions: mbstring, pgsql, mysqli, gd, xml, intl, soap, zip
+          ini-values: max_input_vars=5000
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Initialise moodle-plugin-ci
+        run: |
+          composer create-project -n --no-dev --prefer-dist moodlehq/moodle-plugin-ci ci ^4
+          echo $(cd ci/bin; pwd) >> $GITHUB_PATH
+
+      - name: Install Moodle
+        run: |
+          moodle-plugin-ci install --plugin aisim --sub-plugins filter_aisim -b ${{ matrix.moodle-branch }}
+
+      - name: CodeChecker (PHP_CodeSniffer)
+        run: moodle-plugin-ci codechecker
+
+      - name: PHPDoc
+        run: moodle-plugin-ci phpdoc
+
+      - name: Grunt / ESLint
+        run: moodle-plugin-ci grunt
+
+      - name: PHPUnit tests
+        run: moodle-plugin-ci phpunit
+

@@ -1,0 +1,62 @@
+/**
+ * Styles for AI Simulation question type (qtype_aisim).
+ */
+
+.qtype_aisim_container {
+    margin-top: 1rem;
+    margin-bottom: 1.5rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+    overflow: hidden;
+}
+
+.aisim-goal-card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+    background: linear-gradient(135deg, #f0fdf4 0%, #e0f2fe 100%);
+    border: 1px solid #bae6fd;
+    border-left: 5px solid #0284c7;
+    padding: 12px 16px;
+    border-radius: 8px;
+    margin-top: 12px;
+    margin-bottom: 14px;
+    font-size: 0.95rem;
+    color: #0f172a;
+}
+
+.aisim-goal-title {
+    flex: 1 1 auto;
+}
+
+.aisim-status-badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 4px 12px;
+    border-radius: 9999px;
+    font-size: 0.825rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+}
+
+.aisim-badge-success {
+    background-color: #dcfce7;
+    color: #15803d;
+    border: 1px solid #86efac;
+}
+
+.aisim-badge-partial {
+    background-color: #fef9c3;
+    color: #a16207;
+    border: 1px solid #fde047;
+}
+
+.aisim-badge-danger {
+    background-color: #fee2e2;
+    color: #b91c1c;
+    border: 1px solid #fca5a5;
+}
+
