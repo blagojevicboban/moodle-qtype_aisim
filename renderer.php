@@ -22,8 +22,6 @@
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-defined('MOODLE_INTERNAL') || die();
-
 /**
  * Renders the question formulation, goal instructions, interactive simulation widget, and review status.
  *
@@ -32,7 +30,6 @@ defined('MOODLE_INTERNAL') || die();
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 class qtype_aisim_renderer extends qtype_renderer {
-
     /**
      * Generate the display of the question formulation and the response controls.
      *
@@ -57,7 +54,7 @@ class qtype_aisim_renderer extends qtype_renderer {
         if ($options->readonly && !empty($answer)) {
             $data = qtype_aisim_question::decode_answer($answer);
             if ($data) {
-                list($fraction) = $question->grade_response(['answer' => $answer]);
+                [$fraction] = $question->grade_response(['answer' => $answer]);
                 if ($fraction >= 1.0) {
                     $badgeclass = 'aisim-badge-success';
                     $badgetext = get_string('goalsatisfied', 'qtype_aisim');
@@ -72,7 +69,8 @@ class qtype_aisim_renderer extends qtype_renderer {
             }
         }
 
-        $result .= html_writer::tag('div',
+        $result .= html_writer::tag(
+            'div',
             html_writer::tag('div', $goalhtml, ['class' => 'aisim-goal-title']) . $statusbadge,
             ['class' => 'aisim-goal-card']
         );
@@ -137,7 +135,7 @@ class qtype_aisim_renderer extends qtype_renderer {
         }
 
         $feedback = '';
-        list($fraction) = $question->grade_response(['answer' => $answer]);
+        [$fraction] = $question->grade_response(['answer' => $answer]);
         if ($fraction >= 1.0 && !empty($question->correctfeedback)) {
             $feedback .= $question->format_text(
                 $question->correctfeedback,
@@ -185,4 +183,3 @@ class qtype_aisim_renderer extends qtype_renderer {
         return get_string('correctansweris', 'qtype_aisim', $summary);
     }
 }
-

@@ -35,7 +35,6 @@ require_once($CFG->libdir . '/questionlib.php');
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 class qtype_aisim extends question_type {
-
     /**
      * Extra question options stored in mdl_qtype_aisim_options.
      *
@@ -182,4 +181,3 @@ class qtype_aisim extends question_type {
         return $qo;
     }
 }
-

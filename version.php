@@ -33,4 +33,3 @@ $plugin->release = '0.5.0';
 $plugin->dependencies = [
     'filter_aisim' => 2026102800,
 ];
-

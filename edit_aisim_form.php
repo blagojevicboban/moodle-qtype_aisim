@@ -34,7 +34,6 @@ require_once($CFG->dirroot . '/question/type/edit_question_form.php');
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 class qtype_aisim_edit_form extends question_edit_form {
-
     /**
      * Add question-type specific form fields.
      *
@@ -148,4 +147,3 @@ class qtype_aisim_edit_form extends question_edit_form {
         return 'aisim';
     }
 }
-

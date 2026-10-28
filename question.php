@@ -36,7 +36,6 @@ require_once($CFG->dirroot . '/question/type/questionbase.php');
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 class qtype_aisim_question extends question_graded_automatically {
-
     /** @var string Simulation type (e.g. confusion_matrix, gradient_descent, regression, knn_tree, kmeans). */
     public $simtype = 'confusion_matrix';
 
@@ -146,15 +145,15 @@ class qtype_aisim_question extends question_graded_automatically {
             case 'confusion_matrix':
                 $rec = (float)($metrics['recall'] ?? 0.0);
                 $prec = (float)($metrics['precision'] ?? 0.0);
-                $targetRec = (float)$this->targetparam1;
-                $targetPrec = (float)$this->targetparam2;
+                $targetrec = (float)$this->targetparam1;
+                $targetprec = (float)$this->targetparam2;
 
-                $recOk = ($rec >= $targetRec);
-                $precOk = ($prec >= $targetPrec);
+                $recok = ($rec >= $targetrec);
+                $precok = ($prec >= $targetprec);
 
-                if ($recOk && $precOk) {
+                if ($recok && $precok) {
                     $fraction = 1.0;
-                } else if ($recOk || $precOk) {
+                } else if ($recok || $precok) {
                     $fraction = 0.5;
                 } else {
                     $fraction = 0.0;
@@ -163,12 +162,12 @@ class qtype_aisim_question extends question_graded_automatically {
 
             case 'gradient_descent':
                 $loss = (float)($metrics['loss'] ?? 999.0);
-                $targetLoss = (float)$this->targetparam1;
+                $targetloss = (float)$this->targetparam1;
                 $tol = ($this->targettolerance > 0) ? (float)$this->targettolerance : 0.02;
 
-                if ($loss <= $targetLoss) {
+                if ($loss <= $targetloss) {
                     $fraction = 1.0;
-                } else if ($loss <= ($targetLoss + $tol)) {
+                } else if ($loss <= ($targetloss + $tol)) {
                     $fraction = 0.5;
                 } else {
                     $fraction = 0.0;
@@ -176,17 +175,17 @@ class qtype_aisim_question extends question_graded_automatically {
                 break;
 
             case 'regression':
-                $valMse = (float)($metrics['valMse'] ?? 999.0);
+                $valmse = (float)($metrics['valMse'] ?? 999.0);
                 $degree = (int)($params['degree'] ?? 1);
-                $targetMse = (float)$this->targetparam1;
-                $maxDegree = (int)$this->targetparam2;
+                $targetmse = (float)$this->targetparam1;
+                $maxdegree = (int)$this->targetparam2;
 
-                $mseOk = ($valMse <= $targetMse);
-                $degreeOk = ($maxDegree <= 0 || $degree <= $maxDegree);
+                $mseok = ($valmse <= $targetmse);
+                $degreeok = ($maxdegree <= 0 || $degree <= $maxdegree);
 
-                if ($mseOk && $degreeOk) {
+                if ($mseok && $degreeok) {
                     $fraction = 1.0;
-                } else if ($mseOk || $degreeOk) {
+                } else if ($mseok || $degreeok) {
                     $fraction = 0.5;
                 } else {
                     $fraction = 0.0;
@@ -194,12 +193,12 @@ class qtype_aisim_question extends question_graded_automatically {
                 break;
 
             case 'knn_tree':
-                $testAcc = (float)($metrics['testAcc'] ?? 0.0);
-                $targetAcc = (float)$this->targetparam1;
+                $testacc = (float)($metrics['testAcc'] ?? 0.0);
+                $targetacc = (float)$this->targetparam1;
 
-                if ($testAcc >= $targetAcc) {
+                if ($testacc >= $targetacc) {
                     $fraction = 1.0;
-                } else if ($testAcc >= ($targetAcc - 0.05)) {
+                } else if ($testacc >= ($targetacc - 0.05)) {
                     $fraction = 0.5;
                 } else {
                     $fraction = 0.0;
@@ -210,15 +209,15 @@ class qtype_aisim_question extends question_graded_automatically {
                 $wcss = (float)($metrics['wcss'] ?? 999999.0);
                 $k = (int)($params['k'] ?? 0);
                 $converged = !empty($metrics['converged']);
-                $targetWcss = (float)$this->targetparam1;
-                $targetK = (int)$this->targetparam2;
+                $targetwcss = (float)$this->targetparam1;
+                $targetk = (int)$this->targetparam2;
 
-                $kOk = ($targetK <= 0 || $k === $targetK);
-                $wcssOk = ($wcss <= $targetWcss);
+                $kok = ($targetk <= 0 || $k === $targetk);
+                $wcssok = ($wcss <= $targetwcss);
 
-                if ($converged && $wcssOk && $kOk) {
+                if ($converged && $wcssok && $kok) {
                     $fraction = 1.0;
-                } else if ($converged && ($wcssOk || $kOk)) {
+                } else if ($converged && ($wcssok || $kok)) {
                     $fraction = 0.5;
                 } else {
                     $fraction = 0.0;
@@ -339,11 +338,14 @@ class qtype_aisim_question extends question_graded_automatically {
      * @return bool
      */
     public function check_file_access($qa, $options, $component, $filearea, $args, $forcedownload) {
-        if ($component === 'question' && in_array($filearea,
-                ['correctfeedback', 'partiallycorrectfeedback', 'incorrectfeedback'])) {
+        if (
+            $component === 'question' && in_array(
+                $filearea,
+                ['correctfeedback', 'partiallycorrectfeedback', 'incorrectfeedback']
+            )
+        ) {
             return $this->check_combined_feedback_file_access($qa, $options, $filearea, $args);
         }
         return parent::check_file_access($qa, $options, $component, $filearea, $args, $forcedownload);
     }
 }
-
