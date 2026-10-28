@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+<!-- question: 0  -->
+  <question type="category">
+    <category>
+      <text>$course$/top/AI za VET - Simulacije</text>
+    </category>
+    <info format="html">
+      <text>Kategorija sa interaktivnim simulacionim pitanjima (qtype_aisim) za projekat AI for VET</text>
+    </info>
+    <idnumber></idnumber>
+  </question>
+
+<!-- question: 8004  -->
+  <question type="aisim">
+    <name>
+      <text>Zadatak 1: Optimizacija stope učenja kod gradijentnog spusta</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Ispitujete ponašanje gradijentnog spusta na konveksnoj funkciji troška. Podesite stopu učenja (&alpha;) tako da algoritam uspešno konvergira ka globalnom minimumu u najviše 30 koraka (funkcija troška J(w) &le; 0.05).</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text><![CDATA[<p>Bravo! Uspešno ste podesili parametre simulacije tako da model zadovolji tražene kriterijume.</p>]]></text>
+    </generalfeedback>
+    <defaultgrade>2</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <simtype>gradient_descent</simtype>
+    <scenario>convex</scenario>
+    <targetparam1>0.0000</targetparam1>
+    <targetparam2>0.0500</targetparam2>
+    <targettolerance>0.0500</targettolerance>
+    <simconfig><![CDATA[{"lr":0.10,"w0":3.50}]]></simconfig>
+    <correctfeedback><![CDATA[<p>Odlično! Simulacioni model je konvergirao u optimalnu zonu.</p>]]></correctfeedback>
+    <correctfeedbackformat>1</correctfeedbackformat>
+    <partiallycorrectfeedback><![CDATA[<p>Delimično tačno. Model je blizu optimuma, ali još uvek nije dostigao željenu tačnost.</p>]]></partiallycorrectfeedback>
+    <partiallycorrectfeedbackformat>1</partiallycorrectfeedbackformat>
+    <incorrectfeedback><![CDATA[<p>Netačno. Pokušajte ponovo da promenite parametre.</p>]]></incorrectfeedback>
+    <incorrectfeedbackformat>1</incorrectfeedbackformat>
+    <shownumcorrect>0</shownumcorrect>
+  </question>
+
+<!-- question: 8005  -->
+  <question type="aisim">
+    <name>
+      <text>Zadatak 2: Podešavanje praga odluke za kontrolu kvaliteta</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Radite u fabrici automobilskih delova. Podesite prag odlučivanja (&theta;) klasifikatora tako da dobijete optimalan balans između preciznosti i odziva (F1-score &ge; 0.85).</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text><![CDATA[<p>Bravo! Uspešno ste podesili parametre simulacije tako da model zadovolji tražene kriterijume.</p>]]></text>
+    </generalfeedback>
+    <defaultgrade>2</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <simtype>confusion_matrix</simtype>
+    <scenario>quality</scenario>
+    <targetparam1>0.8500</targetparam1>
+    <targetparam2>1.0000</targetparam2>
+    <targettolerance>0.0500</targettolerance>
+    <simconfig><![CDATA[{"threshold":0.50}]]></simconfig>
+    <correctfeedback><![CDATA[<p>Odlično! Simulacioni model je konvergirao u optimalnu zonu.</p>]]></correctfeedback>
+    <correctfeedbackformat>1</correctfeedbackformat>
+    <partiallycorrectfeedback><![CDATA[<p>Delimično tačno. Model je blizu optimuma, ali još uvek nije dostigao željenu tačnost.</p>]]></partiallycorrectfeedback>
+    <partiallycorrectfeedbackformat>1</partiallycorrectfeedbackformat>
+    <incorrectfeedback><![CDATA[<p>Netačno. Pokušajte ponovo da promenite parametre.</p>]]></incorrectfeedback>
+    <incorrectfeedbackformat>1</incorrectfeedbackformat>
+    <shownumcorrect>0</shownumcorrect>
+  </question>
+
+<!-- question: 8006  -->
+  <question type="aisim">
+    <name>
+      <text>Zadatak 3: Balansiranje složenosti polinomske regresije</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Za dati skup merenja, odaberite stepen polinoma i parametar regularizacije (&lambda;) tako da model generalizuje trend bez prepodešavanja (R² test skor &ge; 0.85).</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text><![CDATA[<p>Bravo! Uspešno ste podesili parametre simulacije tako da model zadovolji tražene kriterijume.</p>]]></text>
+    </generalfeedback>
+    <defaultgrade>2</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <simtype>regression</simtype>
+    <scenario>sine</scenario>
+    <targetparam1>0.8500</targetparam1>
+    <targetparam2>1.0000</targetparam2>
+    <targettolerance>0.0500</targettolerance>
+    <simconfig><![CDATA[{"degree":3,"lambda":0.0}]]></simconfig>
+    <correctfeedback><![CDATA[<p>Odlično! Simulacioni model je konvergirao u optimalnu zonu.</p>]]></correctfeedback>
+    <correctfeedbackformat>1</correctfeedbackformat>
+    <partiallycorrectfeedback><![CDATA[<p>Delimično tačno. Model je blizu optimuma, ali još uvek nije dostigao željenu tačnost.</p>]]></partiallycorrectfeedback>
+    <partiallycorrectfeedbackformat>1</partiallycorrectfeedbackformat>
+    <incorrectfeedback><![CDATA[<p>Netačno. Pokušajte ponovo da promenite parametre.</p>]]></incorrectfeedback>
+    <incorrectfeedbackformat>1</incorrectfeedbackformat>
+    <shownumcorrect>0</shownumcorrect>
+  </question>
+
+<!-- question: 8007  -->
+  <question type="aisim">
+    <name>
+      <text>Zadatak 4: Granice odlučivanja k-NN klasifikatora</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Podesite parametar k (broj suseda) kod k-NN klasifikatora na skupu podataka "Dva polumeseca" tako da tačnost klasifikacije bude barem 88%.</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text><![CDATA[<p>Bravo! Uspešno ste podesili parametre simulacije tako da model zadovolji tražene kriterijume.</p>]]></text>
+    </generalfeedback>
+    <defaultgrade>2</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <simtype>knn_tree</simtype>
+    <scenario>moons</scenario>
+    <targetparam1>0.8800</targetparam1>
+    <targetparam2>1.0000</targetparam2>
+    <targettolerance>0.0400</targettolerance>
+    <simconfig><![CDATA[{"model":"knn","k":3}]]></simconfig>
+    <correctfeedback><![CDATA[<p>Odlično! Simulacioni model je konvergirao u optimalnu zonu.</p>]]></correctfeedback>
+    <correctfeedbackformat>1</correctfeedbackformat>
+    <partiallycorrectfeedback><![CDATA[<p>Delimično tačno. Model je blizu optimuma, ali još uvek nije dostigao željenu tačnost.</p>]]></partiallycorrectfeedback>
+    <partiallycorrectfeedbackformat>1</partiallycorrectfeedbackformat>
+    <incorrectfeedback><![CDATA[<p>Netačno. Pokušajte ponovo da promenite parametre.</p>]]></incorrectfeedback>
+    <incorrectfeedbackformat>1</incorrectfeedbackformat>
+    <shownumcorrect>0</shownumcorrect>
+  </question>
+
+<!-- question: 8008  -->
+  <question type="aisim">
+    <name>
+      <text>Zadatak 5: Pronalaženje klastera K-Means algoritmom</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Pokrenite K-Means algoritam sa odgovarajućim brojem klastera (K=3) i dovedite centroide do stabilne konvergencije.</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text><![CDATA[<p>Bravo! Uspešno ste podesili parametre simulacije tako da model zadovolji tražene kriterijume.</p>]]></text>
+    </generalfeedback>
+    <defaultgrade>2</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <simtype>kmeans</simtype>
+    <scenario>blobs3</scenario>
+    <targetparam1>0.8500</targetparam1>
+    <targetparam2>1.0000</targetparam2>
+    <targettolerance>0.0500</targettolerance>
+    <simconfig><![CDATA[{"k":3}]]></simconfig>
+    <correctfeedback><![CDATA[<p>Odlično! Simulacioni model je konvergirao u optimalnu zonu.</p>]]></correctfeedback>
+    <correctfeedbackformat>1</correctfeedbackformat>
+    <partiallycorrectfeedback><![CDATA[<p>Delimično tačno. Model je blizu optimuma, ali još uvek nije dostigao željenu tačnost.</p>]]></partiallycorrectfeedback>
+    <partiallycorrectfeedbackformat>1</partiallycorrectfeedbackformat>
+    <incorrectfeedback><![CDATA[<p>Netačno. Pokušajte ponovo da promenite parametre.</p>]]></incorrectfeedback>
+    <incorrectfeedbackformat>1</incorrectfeedbackformat>
+    <shownumcorrect>0</shownumcorrect>
+  </question>
+
+</quiz>

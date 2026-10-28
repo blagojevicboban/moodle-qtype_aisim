@@ -119,5 +119,67 @@ class qtype_aisim extends question_type {
     public function get_random_guess_score($questiondata): float {
         return 0.0;
     }
+
+    /**
+     * Export question to Moodle XML format.
+     *
+     * @param stdClass $question question data
+     * @param qformat_xml $format the export format class
+     * @param mixed $extra unused
+     * @return string
+     */
+    public function export_to_xml($question, qformat_xml $format, $extra = null): string {
+        $fields = $this->extra_question_fields();
+        array_shift($fields);
+        $out = '';
+        foreach ($fields as $field) {
+            $val = $question->options->$field ?? '';
+            $out .= "    <{$field}>" . $format->xml_escape((string)$val) . "</{$field}>\n";
+        }
+        return $out;
+    }
+
+    /**
+     * Import question from Moodle XML format.
+     *
+     * @param array $data parsed XML data
+     * @param stdClass $question unused
+     * @param qformat_xml $format the import format class
+     * @param mixed $extra unused
+     * @return stdClass|false
+     */
+    public function import_from_xml($data, $question, qformat_xml $format, $extra = null) {
+        if (($data['@']['type'] ?? '') !== $this->name()) {
+            return false;
+        }
+
+        $qo = $format->import_headers($data);
+        $qo->qtype = $this->name();
+
+        $fields = $this->extra_question_fields();
+        array_shift($fields);
+
+        $defaults = [
+            'simtype' => 'confusion_matrix',
+            'scenario' => 'quality',
+            'targetparam1' => '0.8500',
+            'targetparam2' => '1.0000',
+            'targettolerance' => '0.0500',
+            'simconfig' => '',
+            'correctfeedback' => '<p>Odlično!</p>',
+            'correctfeedbackformat' => 1,
+            'partiallycorrectfeedback' => '<p>Delimično tačno.</p>',
+            'partiallycorrectfeedbackformat' => 1,
+            'incorrectfeedback' => '<p>Netačno.</p>',
+            'incorrectfeedbackformat' => 1,
+            'shownumcorrect' => 0,
+        ];
+
+        foreach ($fields as $field) {
+            $qo->$field = $format->getpath($data, ['#', $field, 0, '#'], $defaults[$field] ?? '');
+        }
+
+        return $qo;
+    }
 }
 
