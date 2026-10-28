@@ -28,6 +28,38 @@ import {KnnTreeSim} from 'filter_aisim/sims/knn_tree';
 import {KMeansSim} from 'filter_aisim/sims/kmeans';
 
 /**
+ * Per simulation type: the engine, the option that receives the question's scenario (and its default),
+ * and which saved answer parameters restore which engine options.
+ */
+const SIMS = {
+    'confusion_matrix': {
+        Engine: ConfusionMatrixSim,
+        scenario: ['scenario', 'quality'],
+        restore: {threshold: 'threshold'},
+    },
+    'gradient_descent': {
+        Engine: GradientDescentSim,
+        scenario: ['profile', 'convex'],
+        restore: {w: 'w0', learningRate: 'lr'},
+    },
+    'regression': {
+        Engine: RegressionSim,
+        scenario: ['dataset', 'sine'],
+        restore: {degree: 'degree', lambda: 'lambda'},
+    },
+    'knn_tree': {
+        Engine: KnnTreeSim,
+        scenario: ['dataset', 'moons'],
+        restore: {model: 'model', k: 'k', depth: 'depth'},
+    },
+    'kmeans': {
+        Engine: KMeansSim,
+        scenario: ['dataset', 'blobs3'],
+        restore: {k: 'k'},
+    },
+};
+
+/**
  * Initialise the question attempt.
  *
  * @param {string} containerId ID of the element that receives the simulation.
@@ -78,54 +110,21 @@ export const init = (containerId, inputId, config = {}) => {
         }
     }
 
-    if (simType === 'confusion_matrix') {
-        simOptions.scenario = config.scenario || 'quality';
-        if (savedState && savedState.parameters && savedState.parameters.threshold !== undefined) {
-            simOptions.threshold = savedState.parameters.threshold;
-        }
-        new ConfusionMatrixSim(container, simOptions);
-    } else if (simType === 'gradient_descent') {
-        simOptions.profile = config.scenario || 'convex';
-        if (savedState && savedState.parameters) {
-            if (savedState.parameters.w !== undefined) {
-                simOptions.w0 = savedState.parameters.w;
-            }
-            if (savedState.parameters.learningRate !== undefined) {
-                simOptions.lr = savedState.parameters.learningRate;
-            }
-        }
-        new GradientDescentSim(container, simOptions);
-    } else if (simType === 'regression') {
-        simOptions.dataset = config.scenario || 'sine';
-        if (savedState && savedState.parameters) {
-            if (savedState.parameters.degree !== undefined) {
-                simOptions.degree = savedState.parameters.degree;
-            }
-            if (savedState.parameters.lambda !== undefined) {
-                simOptions.lambda = savedState.parameters.lambda;
-            }
-        }
-        new RegressionSim(container, simOptions);
-    } else if (simType === 'knn_tree') {
-        simOptions.dataset = config.scenario || 'moons';
-        if (savedState && savedState.parameters) {
-            if (savedState.parameters.model !== undefined) {
-                simOptions.model = savedState.parameters.model;
-            }
-            if (savedState.parameters.k !== undefined) {
-                simOptions.k = savedState.parameters.k;
-            }
-            if (savedState.parameters.depth !== undefined) {
-                simOptions.depth = savedState.parameters.depth;
-            }
-        }
-        new KnnTreeSim(container, simOptions);
-    } else if (simType === 'kmeans') {
-        simOptions.dataset = config.scenario || 'blobs3';
-        if (savedState && savedState.parameters && savedState.parameters.k !== undefined) {
-            simOptions.k = savedState.parameters.k;
-        }
-        new KMeansSim(container, simOptions);
+    if (!Object.prototype.hasOwnProperty.call(SIMS, simType)) {
+        return;
     }
+    const sim = SIMS[simType];
+    const [scenarioOption, scenarioDefault] = sim.scenario;
+    simOptions[scenarioOption] = config.scenario || scenarioDefault;
+
+    // Restore the parameters from the student's saved answer.
+    const saved = (savedState && savedState.parameters) || {};
+    Object.entries(sim.restore).forEach(([param, option]) => {
+        if (saved[param] !== undefined) {
+            simOptions[option] = saved[param];
+        }
+    });
+
+    new sim.Engine(container, simOptions);
 };
 
