@@ -46,6 +46,15 @@ php admin/cli/upgrade.php
 
 ---
 
+## 📚 Documentation & Ready-to-Use Resources
+
+- 🇷🇸 **[Pedagoško-tehnički priručnik za nastavnike](docs/PRIRUCNIK_ZA_NASTAVNIKE.md)**
+- 🇬🇧 **[Pedagogical and Technical Teacher Guide](docs/TEACHER_GUIDE.md)**
+- 📝 **[15-Question Pre-packaged Bank (Moodle XML)](demo/questions_aiforvet.xml)**
+- 📦 **[Turnkey Course Backup (.mbz)](https://github.com/blagojevicboban/moodle-qtype_aisim/releases/download/v0.5.0/aiforvet_simulations_demo_course.mbz)**
+
+---
+
 ## 📄 License
 
 GNU General Public License v3.0 or later.
