@@ -87,8 +87,8 @@ class qtype_aisim extends question_type {
         if (!parent::get_question_options($question)) {
             return false;
         }
-        $feedback = $DB->get_record('qtype_aisim_options', ['questionid' => $question->id],
-            implode(', ', self::FEEDBACK_FIELDS));
+        $fields = implode(', ', self::FEEDBACK_FIELDS);
+        $feedback = $DB->get_record('qtype_aisim_options', ['questionid' => $question->id], $fields);
         foreach (self::FEEDBACK_FIELDS as $field) {
             $question->options->$field = $feedback->$field ?? null;
         }
