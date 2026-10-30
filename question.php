@@ -205,6 +205,23 @@ class qtype_aisim_question extends question_graded_automatically {
                 }
                 break;
 
+            case 'neural_network':
+                $acc = (float)($metrics['accuracy'] ?? 0.0);
+                $hidden = (int)($params['hidden'] ?? 0);
+                $maxhidden = (int)$this->targetparam2;
+
+                $accok = ($acc >= (float)$this->targetparam1);
+                $hiddenok = ($maxhidden <= 0 || $hidden <= $maxhidden);
+
+                if ($accok && $hiddenok) {
+                    $fraction = 1.0;
+                } else if ($accok || $hiddenok) {
+                    $fraction = 0.5;
+                } else {
+                    $fraction = 0.0;
+                }
+                break;
+
             case 'kmeans':
                 $wcss = (float)($metrics['wcss'] ?? 999999.0);
                 $k = (int)($params['k'] ?? 0);
@@ -253,7 +270,10 @@ class qtype_aisim_question extends question_graded_automatically {
                 $th = isset($p['threshold']) ? sprintf('%.2f', $p['threshold']) : '?';
                 $rec = isset($m['recall']) ? round($m['recall'] * 100) . '%' : '?';
                 $prec = isset($m['precision']) ? round($m['precision'] * 100) . '%' : '?';
-                $f1 = isset($m['f1']) ? round($m['f1'] * 100) . '%' : '?';
+                $f1 = '?';
+                if (isset($m['recall'], $m['precision']) && ($m['recall'] + $m['precision']) > 0) {
+                    $f1 = round(200 * $m['recall'] * $m['precision'] / ($m['recall'] + $m['precision'])) . '%';
+                }
                 return "θ = {$th} (Recall: {$rec}, Precision: {$prec}, F1: {$f1})";
 
             case 'gradient_descent':
@@ -276,6 +296,12 @@ class qtype_aisim_question extends question_graded_automatically {
                 $wcss = isset($m['wcss']) ? round($m['wcss']) : '?';
                 $conv = !empty($m['converged']) ? '✓' : '✗';
                 return "K = {$k}, WCSS = {$wcss}, Converged: {$conv}";
+
+            case 'neural_network':
+                $hidden = $p['hidden'] ?? '?';
+                $acc = isset($m['accuracy']) ? round($m['accuracy'] * 100) . '%' : '?';
+                $epochs = $p['epochs'] ?? '?';
+                return "Hidden neurons: {$hidden}, Accuracy: {$acc}, Epochs: {$epochs}";
 
             default:
                 return json_encode($m);
@@ -311,6 +337,12 @@ class qtype_aisim_question extends question_graded_automatically {
                 $wcss = round($this->targetparam1);
                 $k = (int)$this->targetparam2;
                 return get_string('rightsummary_km', 'qtype_aisim', (object)['wcss' => $wcss, 'k' => $k]);
+
+            case 'neural_network':
+                $acc = round($this->targetparam1 * 100);
+                $hidden = (int)$this->targetparam2;
+                $key = $hidden > 0 ? 'rightsummary_nn' : 'rightsummary_nn_any';
+                return get_string($key, 'qtype_aisim', (object)['acc' => $acc, 'hidden' => $hidden]);
 
             default:
                 return '';

@@ -3,10 +3,10 @@
 <!-- question: 0  -->
   <question type="category">
     <category>
-      <text>$course$/top/AI za VET - Baza simulacionih zadataka (15 pitanja)</text>
+      <text>$course$/top/AI za VET - Baza simulacionih zadataka (18 pitanja)</text>
     </category>
     <info format="html">
-      <text>Kompletna baza od 15 interaktivnih zadataka sa automatskim ocenjivanjem za projekat AI for VET (Erasmus+), razvrstanih u 3 nivoa težine po svim simulacionim modulima.</text>
+      <text>Kompletna baza od 18 interaktivnih zadataka sa automatskim ocenjivanjem za projekat AI for VET (Erasmus+), razvrstanih u 3 nivoa težine po svim simulacionim modulima.</text>
     </info>
     <idnumber></idnumber>
   </question>
@@ -536,6 +536,114 @@
     <targetparam2>4.0000</targetparam2>
     <targettolerance>0.0500</targettolerance>
     <simconfig><![CDATA[{"k":2}]]></simconfig>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Odlično! Simulacioni model je konvergirao u optimalnu zonu.</p>]]></text>
+    </correctfeedback>
+    <correctfeedbackformat>1</correctfeedbackformat>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Delimično tačno. Model je blizu optimuma, ali još uvek nije dostigao željenu tačnost.</p>]]></text>
+    </partiallycorrectfeedback>
+    <partiallycorrectfeedbackformat>1</partiallycorrectfeedbackformat>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Netačno. Pokušajte ponovo da promenite parametre.</p>]]></text>
+    </incorrectfeedback>
+    <incorrectfeedbackformat>1</incorrectfeedbackformat>
+    <shownumcorrect>0</shownumcorrect>
+  </question>
+
+<!-- question: 8116  -->
+  <question type="aisim">
+    <name>
+      <text>NN-01: Perceptron na linearno razdvojivim podacima (Osnovni nivo)</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Dve klase mernih tačaka mogu se razdvojiti pravom linijom. Istrenirajte <strong>perceptron (0 skrivenih slojeva)</strong> do <strong>tačnosti &ge; 99%</strong>, koristeći najviše 1 skriveni neuron. Ako ispunite samo jedan uslov, dobijate pola poena.</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text><![CDATA[<p>Bravo! Uspešno ste podesili parametre simulacije tako da model zadovolji inženjerske kriterijume.</p>]]></text>
+    </generalfeedback>
+    <defaultgrade>2</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <simtype>neural_network</simtype>
+    <scenario>linear</scenario>
+    <targetparam1>0.9900</targetparam1>
+    <targetparam2>1.0000</targetparam2>
+    <targettolerance>0.0500</targettolerance>
+    <simconfig><![CDATA[{"layers":0}]]></simconfig>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Odlično! Simulacioni model je konvergirao u optimalnu zonu.</p>]]></text>
+    </correctfeedback>
+    <correctfeedbackformat>1</correctfeedbackformat>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Delimično tačno. Model je blizu optimuma, ali još uvek nije dostigao željenu tačnost.</p>]]></text>
+    </partiallycorrectfeedback>
+    <partiallycorrectfeedbackformat>1</partiallycorrectfeedbackformat>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Netačno. Pokušajte ponovo da promenite parametre.</p>]]></text>
+    </incorrectfeedback>
+    <incorrectfeedbackformat>1</incorrectfeedbackformat>
+    <shownumcorrect>0</shownumcorrect>
+  </question>
+
+<!-- question: 8117  -->
+  <question type="aisim">
+    <name>
+      <text>NN-02: Rešavanje problema XOR skrivenim slojem (Srednji nivo)</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Kod podataka XOR (ukršteni kvadranti) perceptron ostaje na 50% tačnosti, jer nijedna prava ne razdvaja klase. Dodajte skriveni sloj i postignite <strong>tačnost &ge; 98%</strong> sa <strong>najviše 4 skrivena neurona</strong>. Ako ispunite samo jedan uslov, dobijate pola poena.</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text><![CDATA[<p>Bravo! Uspešno ste podesili parametre simulacije tako da model zadovolji inženjerske kriterijume.</p>]]></text>
+    </generalfeedback>
+    <defaultgrade>2</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <simtype>neural_network</simtype>
+    <scenario>xor</scenario>
+    <targetparam1>0.9800</targetparam1>
+    <targetparam2>4.0000</targetparam2>
+    <targettolerance>0.0500</targettolerance>
+    <simconfig><![CDATA[{"layers":0}]]></simconfig>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Odlično! Simulacioni model je konvergirao u optimalnu zonu.</p>]]></text>
+    </correctfeedback>
+    <correctfeedbackformat>1</correctfeedbackformat>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Delimično tačno. Model je blizu optimuma, ali još uvek nije dostigao željenu tačnost.</p>]]></text>
+    </partiallycorrectfeedback>
+    <partiallycorrectfeedbackformat>1</partiallycorrectfeedbackformat>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Netačno. Pokušajte ponovo da promenite parametre.</p>]]></text>
+    </incorrectfeedback>
+    <incorrectfeedbackformat>1</incorrectfeedbackformat>
+    <shownumcorrect>0</shownumcorrect>
+  </question>
+
+<!-- question: 8118  -->
+  <question type="aisim">
+    <name>
+      <text>NN-03: Krug u krugu sa malom mrežom (Napredni nivo)</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Unutrašnja klasa je okružena spoljašnjom. Mreža sa 2 skrivena neurona to ne razdvaja pouzdano. Podesite arhitekturu, aktivaciju i stopu učenja tako da postignete <strong>tačnost &ge; 98%</strong> sa <strong>najviše 4 skrivena neurona</strong>. Ako učenje zastane, probajte nove početne težine.</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text><![CDATA[<p>Bravo! Uspešno ste podesili parametre simulacije tako da model zadovolji inženjerske kriterijume.</p>]]></text>
+    </generalfeedback>
+    <defaultgrade>2</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <simtype>neural_network</simtype>
+    <scenario>circles</scenario>
+    <targetparam1>0.9800</targetparam1>
+    <targetparam2>4.0000</targetparam2>
+    <targettolerance>0.0500</targettolerance>
+    <simconfig><![CDATA[{"layers":1,"neurons":2}]]></simconfig>
     <correctfeedback format="html">
       <text><![CDATA[<p>Odlično! Simulacioni model je konvergirao u optimalnu zonu.</p>]]></text>
     </correctfeedback>

@@ -5,6 +5,17 @@ All notable changes to the **AI Simulation Question Type (`qtype_aisim`)** will 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.6.0] - 2026-10-30
+
+### Added
+- Perceptron & Neural Network simulation type (`neural_network`, needs filter_aisim 0.6.0). Graded on accuracy
+  (target 1) and the number of hidden neurons (target 2, 0 = no limit); meeting one of the two gives half marks.
+  A review re-trains the network to the student's saved epochs, so it shows the student's own boundary.
+- Three neural network questions in `demo/questions_aiforvet.xml` (now 18), with measured targets.
+
+### Fixed
+- The response summary of the confusion matrix showed "F1: ?"; F1 is now computed from recall and precision.
+
 ## [0.5.2] - 2026-10-30
 
 ### Added

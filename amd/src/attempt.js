@@ -26,6 +26,7 @@ import {ConfusionMatrixSim} from 'filter_aisim/sims/confusion_matrix';
 import {RegressionSim} from 'filter_aisim/sims/regression';
 import {KnnTreeSim} from 'filter_aisim/sims/knn_tree';
 import {KMeansSim} from 'filter_aisim/sims/kmeans';
+import {NeuralNetworkSim} from 'filter_aisim/sims/neural_network';
 
 /**
  * Per simulation type: the engine, the option that receives the question's scenario (and its default),
@@ -57,6 +58,12 @@ const SIMS = {
         scenario: ['dataset', 'blobs3'],
         restore: {k: 'k'},
     },
+    'neural_network': {
+        Engine: NeuralNetworkSim,
+        scenario: ['dataset', 'xor'],
+        // The network re-trains to the saved epochs from the same seed, so the review shows the student's own result.
+        restore: {layers: 'layers', neurons: 'neurons', activation: 'activation', lr: 'lr', seed: 'seed', epochs: 'epochs'},
+    },
 };
 
 /**
@@ -86,7 +93,9 @@ export const init = (containerId, inputId, config = {}) => {
         const json = JSON.stringify(state);
         if (input.value !== json) {
             input.value = json;
-            input.dispatchEvent(new Event('change', {bubbles: true}));
+            // No bubbling: the quiz autosave polls hidden fields itself, and theme_boost/aria turns the value of any
+            // bubbling hidden-input change into a CSS selector, which breaks on JSON quotes (console errors).
+            input.dispatchEvent(new Event('change', {bubbles: false}));
         }
     };
 
