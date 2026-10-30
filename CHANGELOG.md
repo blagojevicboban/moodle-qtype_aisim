@@ -5,6 +5,15 @@ All notable changes to the **AI Simulation Question Type (`qtype_aisim`)** will 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.9.0] - 2026-10-30
+
+### Added
+- Data Split & Bias simulation type (`data_bias`, needs filter_aisim 0.9.0). The scenario is the population
+  ("shifted" / "similar"). Full marks when the real-world accuracy of the weaker factory reaches target 1 with at
+  most target 2 samples (0 = no limit); meeting only the accuracy gives half marks. A review redraws the student's
+  own sample.
+- Three data split & bias questions in `demo/questions_aiforvet.xml` (now 27), with measured targets.
+
 ## [0.8.0] - 2026-10-30
 
 ### Added

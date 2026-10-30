@@ -256,6 +256,24 @@ class qtype_aisim_question extends question_graded_automatically {
                 }
                 break;
 
+            case 'data_bias':
+                // The weakest factory decides: a model is only as good as it is for the group it serves worst.
+                $worst = (float)($metrics['worst'] ?? 0.0);
+                $n = (int)($params['n'] ?? 0);
+                $maxn = (int)$this->targetparam2;
+
+                $worstok = ($worst >= (float)$this->targetparam1);
+                $nok = ($maxn <= 0 || $n <= $maxn);
+
+                if ($worstok && $nok) {
+                    $fraction = 1.0;
+                } else if ($worstok) {
+                    $fraction = 0.5;
+                } else {
+                    $fraction = 0.0;
+                }
+                break;
+
             case 'kmeans':
                 $wcss = (float)($metrics['wcss'] ?? 999999.0);
                 $k = (int)($params['k'] ?? 0);
@@ -355,6 +373,14 @@ class qtype_aisim_question extends question_graded_automatically {
                 $epsilon = $p['epsilon'] ?? '?';
                 return "α = {$alpha}, γ = {$gamma}, ε = {$epsilon}, Episodes: {$episodes}, Path: {$path}";
 
+            case 'data_bias':
+                $pct = fn($key) => isset($m[$key]) ? round($m[$key] * 100) . '%' : '?';
+                $n = $p['n'] ?? '?';
+                $share = $p['share'] ?? '?';
+                $k = $p['k'] ?? '?';
+                [$test, $acca, $accb] = [$pct('testAcc'), $pct('accA'), $pct('accB')];
+                return "n = {$n}, B share = {$share}%, k = {$k}, Test: {$test}, Factory A: {$acca}, Factory B: {$accb}";
+
             default:
                 return json_encode($m);
         }
@@ -405,6 +431,12 @@ class qtype_aisim_question extends question_graded_automatically {
                 $episodes = (int)$this->targetparam2;
                 $key = $episodes > 0 ? 'rightsummary_ql' : 'rightsummary_ql_any';
                 return get_string($key, 'qtype_aisim', (object)['steps' => $steps, 'episodes' => $episodes]);
+
+            case 'data_bias':
+                $acc = round($this->targetparam1 * 100);
+                $n = (int)$this->targetparam2;
+                $key = $n > 0 ? 'rightsummary_db' : 'rightsummary_db_any';
+                return get_string($key, 'qtype_aisim', (object)['acc' => $acc, 'n' => $n]);
 
             default:
                 return '';

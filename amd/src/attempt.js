@@ -29,6 +29,7 @@ import {KMeansSim} from 'filter_aisim/sims/kmeans';
 import {NeuralNetworkSim} from 'filter_aisim/sims/neural_network';
 import {ConvolutionSim} from 'filter_aisim/sims/convolution';
 import {QLearningSim} from 'filter_aisim/sims/q_learning';
+import {DataBiasSim} from 'filter_aisim/sims/data_bias';
 
 /**
  * Per simulation type: the engine, the option that receives the question's scenario (and its default),
@@ -77,6 +78,12 @@ const SIMS = {
         scenario: ['map', 'maze'],
         // The agent re-trains to the saved episodes from the same seed, so the review shows the student's own policy.
         restore: {alpha: 'alpha', gamma: 'gamma', epsilon: 'epsilon', seed: 'seed', episodes: 'episodes'},
+    },
+    'data_bias': {
+        Engine: DataBiasSim,
+        scenario: ['population', 'shifted'],
+        // The same seed and settings draw the same sample, so the review shows the student's own model.
+        restore: {n: 'n', share: 'share', test: 'test', k: 'k', seed: 'seed'},
     },
 };
 
