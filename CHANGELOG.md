@@ -5,6 +5,15 @@ All notable changes to the **AI Simulation Question Type (`qtype_aisim`)** will 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.5.2] - 2026-10-30
+
+### Added
+- Backup and restore of the question options (`backup/moodle2`). Before this, a course backup kept the AI Simulation questions but lost their simulation, targets and feedback.
+- Restoring an older backup without options gives those questions the default simulation (confusion matrix), so they can still be opened and edited.
+
+### Changed
+- `demo/aiforvet_simulations_demo_course.mbz` rebuilt with the options included, without user data.
+
 ## [0.5.1] - 2026-10-30
 
 ### Fixed
