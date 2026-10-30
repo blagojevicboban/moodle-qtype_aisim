@@ -11,8 +11,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Backup and restore of the question options (`backup/moodle2`). Before this, a course backup kept the AI Simulation questions but lost their simulation, targets and feedback.
 - Restoring an older backup without options gives those questions the default simulation (confusion matrix), so they can still be opened and edited.
 
-### Changed
-- `demo/aiforvet_simulations_demo_course.mbz` rebuilt with the options included, without user data.
+### Removed
+- The demo course backup (`demo/aiforvet_simulations_demo_course.mbz`) and the teacher guide section on restoring it; use `demo/questions_aiforvet.xml` for the ready-made questions.
 
 ## [0.5.1] - 2026-10-30
 
