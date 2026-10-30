@@ -9,7 +9,7 @@
 
 Developed as part of the Erasmus+ **AI for VET** project (*AI for Vocational Education and Training* — [aiforvet.eu](https://aiforvet.eu/)).
 
-> Status: **v0.9.0 (Alpha)**.
+> Status: **v0.9.1 (Beta)**.
 
 ---
 
@@ -50,9 +50,16 @@ php admin/cli/upgrade.php
 
 - 🇷🇸 **[Pedagoško-tehnički priručnik za nastavnike](docs/PRIRUCNIK_ZA_NASTAVNIKE.md)**
 - 🇬🇧 **[Pedagogical and Technical Teacher Guide](docs/TEACHER_GUIDE.md)**
-- 📝 **[18-Question Pre-packaged Bank (Moodle XML)](demo/questions_aiforvet.xml)**
+- 📝 **[27-Question Pre-packaged Bank (Moodle XML)](demo/questions_aiforvet.xml)**
 
 ---
+
+## ⚠️ Known limitations
+
+The simulations run in the student's browser, which also measures the result (accuracy, loss, match…) and sends it
+with the answer; the server grades those numbers against the targets. A student who manipulates the request could
+therefore submit results the simulation never produced. Use AI Simulation questions for practice and formative
+assessment rather than for high-stakes exams.
 
 ## 📄 License
 

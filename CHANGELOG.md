@@ -5,6 +5,22 @@ All notable changes to the **AI Simulation Question Type (`qtype_aisim`)** will 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.9.1] - 2026-10-30
+
+### Added
+- PHPUnit tests: grading of all nine simulation types, response summaries and right answers, saving and loading,
+  Moodle XML export and import, and the import of the demo question bank.
+
+### Changed
+- Maturity: beta.
+
+### Fixed
+- PHP 8.2+ deprecation notices: the combined feedback fields are now declared on the question class.
+
+### Removed
+- Development scripts that only worked on the author's machine (`demo/add_quiz_to_moodle.php`,
+  `demo/setup_demo_course_m53.php`, `tests/test_grading.php`); import `demo/questions_aiforvet.xml` instead.
+
 ## [0.9.0] - 2026-10-30
 
 ### Added

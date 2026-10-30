@@ -1,4 +1,0 @@
-filter:
-  notPaths:
-    - demo
-    - tests/test_grading.php

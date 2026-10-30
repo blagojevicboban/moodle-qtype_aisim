@@ -36,7 +36,7 @@ require_once($CFG->dirroot . '/question/type/questionbase.php');
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 class qtype_aisim_question extends question_graded_automatically {
-    /** @var string Simulation type (e.g. confusion_matrix, gradient_descent, regression, knn_tree, kmeans). */
+    /** @var string Simulation type (e.g. confusion_matrix, gradient_descent, neural_network, convolution, q_learning). */
     public $simtype = 'confusion_matrix';
 
     /** @var string Scenario key or dataset preset. */
@@ -53,6 +53,27 @@ class qtype_aisim_question extends question_graded_automatically {
 
     /** @var string Initial simulation JSON configuration. */
     public $simconfig = '';
+
+    /** @var string Feedback for a fully correct response. */
+    public $correctfeedback;
+
+    /** @var int Format of the feedback for a fully correct response. */
+    public $correctfeedbackformat;
+
+    /** @var string Feedback for a partially correct response. */
+    public $partiallycorrectfeedback;
+
+    /** @var int Format of the feedback for a partially correct response. */
+    public $partiallycorrectfeedbackformat;
+
+    /** @var string Feedback for an incorrect response. */
+    public $incorrectfeedback;
+
+    /** @var int Format of the feedback for an incorrect response. */
+    public $incorrectfeedbackformat;
+
+    /** @var bool Whether to show the number of correct parts (part of the standard combined feedback). */
+    public $shownumcorrect;
 
     /**
      * The response variable carries the JSON encoded simulation state.
