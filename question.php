@@ -222,6 +222,20 @@ class qtype_aisim_question extends question_graded_automatically {
                 }
                 break;
 
+            case 'convolution':
+                $match = (float)($metrics['match'] ?? 0.0);
+                $targetmatch = (float)$this->targetparam1;
+                $tol = ($this->targettolerance > 0) ? (float)$this->targettolerance : 0.10;
+
+                if ($match >= $targetmatch) {
+                    $fraction = 1.0;
+                } else if ($match >= ($targetmatch - $tol)) {
+                    $fraction = 0.5;
+                } else {
+                    $fraction = 0.0;
+                }
+                break;
+
             case 'kmeans':
                 $wcss = (float)($metrics['wcss'] ?? 999999.0);
                 $k = (int)($params['k'] ?? 0);
@@ -303,6 +317,16 @@ class qtype_aisim_question extends question_graded_automatically {
                 $epochs = $p['epochs'] ?? '?';
                 return "Hidden neurons: {$hidden}, Accuracy: {$acc}, Epochs: {$epochs}";
 
+            case 'convolution':
+                $kernel = '?';
+                if (isset($p['kernel']) && is_array($p['kernel'])) {
+                    $kernel = implode(' ', array_map('intval', $p['kernel']));
+                }
+                $divisor = $p['divisor'] ?? '?';
+                $abs = !empty($p['abs']) ? ', |x|' : '';
+                $match = isset($m['match']) ? round($m['match'] * 100) . '%' : '?';
+                return "Kernel: [{$kernel}] / {$divisor}{$abs}, Match: {$match}";
+
             default:
                 return json_encode($m);
         }
@@ -343,6 +367,10 @@ class qtype_aisim_question extends question_graded_automatically {
                 $hidden = (int)$this->targetparam2;
                 $key = $hidden > 0 ? 'rightsummary_nn' : 'rightsummary_nn_any';
                 return get_string($key, 'qtype_aisim', (object)['acc' => $acc, 'hidden' => $hidden]);
+
+            case 'convolution':
+                $match = round($this->targetparam1 * 100);
+                return get_string('rightsummary_conv', 'qtype_aisim', (object)['match' => $match]);
 
             default:
                 return '';

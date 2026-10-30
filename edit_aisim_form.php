@@ -50,6 +50,7 @@ class qtype_aisim_edit_form extends question_edit_form {
             'knn_tree' => get_string('sim_knn', 'qtype_aisim'),
             'kmeans' => get_string('sim_km', 'qtype_aisim'),
             'neural_network' => get_string('sim_nn', 'qtype_aisim'),
+            'convolution' => get_string('sim_conv', 'qtype_aisim'),
         ];
         $mform->addElement('select', 'simtype', get_string('simtype', 'qtype_aisim'), $simtypes);
         $mform->setDefault('simtype', 'confusion_matrix');

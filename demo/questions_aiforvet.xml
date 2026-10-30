@@ -3,10 +3,10 @@
 <!-- question: 0  -->
   <question type="category">
     <category>
-      <text>$course$/top/AI za VET - Baza simulacionih zadataka (18 pitanja)</text>
+      <text>$course$/top/AI za VET - Baza simulacionih zadataka (21 pitanje)</text>
     </category>
     <info format="html">
-      <text>Kompletna baza od 18 interaktivnih zadataka sa automatskim ocenjivanjem za projekat AI for VET (Erasmus+), razvrstanih u 3 nivoa težine po svim simulacionim modulima.</text>
+      <text>Kompletna baza sa 21 interaktivnim zadatkom sa automatskim ocenjivanjem za projekat AI for VET (Erasmus+), razvrstanih u 3 nivoa težine po svim simulacionim modulima.</text>
     </info>
     <idnumber></idnumber>
   </question>
@@ -650,6 +650,114 @@
     <correctfeedbackformat>1</correctfeedbackformat>
     <partiallycorrectfeedback format="html">
       <text><![CDATA[<p>Delimično tačno. Model je blizu optimuma, ali još uvek nije dostigao željenu tačnost.</p>]]></text>
+    </partiallycorrectfeedback>
+    <partiallycorrectfeedbackformat>1</partiallycorrectfeedbackformat>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Netačno. Pokušajte ponovo da promenite parametre.</p>]]></text>
+    </incorrectfeedback>
+    <incorrectfeedbackformat>1</incorrectfeedbackformat>
+    <shownumcorrect>0</shownumcorrect>
+  </question>
+
+<!-- question: 8119  -->
+  <question type="aisim">
+    <name>
+      <text>CONV-01: Koji filter daje cilj? (Osnovni nivo)</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Na slici sa prugama primenjen je jedan od gotovih filtera, a rezultat je prikazan kao <strong>Cilj</strong>. Isprobajte gotove filtere i pronađite onaj koji daje <strong>podudaranje &ge; 95%</strong>. Šta ovaj filter ističe?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text><![CDATA[<p>Bravo! Uspešno ste podesili parametre simulacije tako da model zadovolji inženjerske kriterijume.</p>]]></text>
+    </generalfeedback>
+    <defaultgrade>1</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <simtype>convolution</simtype>
+    <scenario>stripes</scenario>
+    <targetparam1>0.9500</targetparam1>
+    <targetparam2>0.0000</targetparam2>
+    <targettolerance>0.1000</targettolerance>
+    <simconfig><![CDATA[{"target":"sobelx"}]]></simconfig>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Odlično! Simulacioni model je konvergirao u optimalnu zonu.</p>]]></text>
+    </correctfeedback>
+    <correctfeedbackformat>1</correctfeedbackformat>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Delimično tačno. Model je blizu optimuma, ali još uvek nije dostigao željeno podudaranje.</p>]]></text>
+    </partiallycorrectfeedback>
+    <partiallycorrectfeedbackformat>1</partiallycorrectfeedbackformat>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Netačno. Pokušajte ponovo da promenite parametre.</p>]]></text>
+    </incorrectfeedback>
+    <incorrectfeedbackformat>1</incorrectfeedbackformat>
+    <shownumcorrect>0</shownumcorrect>
+  </question>
+
+<!-- question: 8120  -->
+  <question type="aisim">
+    <name>
+      <text>CONV-02: Uklanjanje šuma (Srednji nivo)</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Slika je puna šuma. Gotovi filteri su skriveni: upišite <strong>težine kernela i delilac</strong> tako da rezultat bude kao na ciljnoj slici, uz <strong>podudaranje &ge; 95%</strong>. Pazite da zbir težina podeljen deliocem bude 1, inače se menja svetlina slike.</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text><![CDATA[<p>Bravo! Uspešno ste podesili parametre simulacije tako da model zadovolji inženjerske kriterijume.</p>]]></text>
+    </generalfeedback>
+    <defaultgrade>1</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <simtype>convolution</simtype>
+    <scenario>noisy</scenario>
+    <targetparam1>0.9500</targetparam1>
+    <targetparam2>0.0000</targetparam2>
+    <targettolerance>0.1000</targettolerance>
+    <simconfig><![CDATA[{"target":"gaussian","presets":false}]]></simconfig>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Odlično! Simulacioni model je konvergirao u optimalnu zonu.</p>]]></text>
+    </correctfeedback>
+    <correctfeedbackformat>1</correctfeedbackformat>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Delimično tačno. Model je blizu optimuma, ali još uvek nije dostigao željeno podudaranje.</p>]]></text>
+    </partiallycorrectfeedback>
+    <partiallycorrectfeedbackformat>1</partiallycorrectfeedbackformat>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Netačno. Pokušajte ponovo da promenite parametre.</p>]]></text>
+    </incorrectfeedback>
+    <incorrectfeedbackformat>1</incorrectfeedbackformat>
+    <shownumcorrect>0</shownumcorrect>
+  </question>
+
+<!-- question: 8121  -->
+  <question type="aisim">
+    <name>
+      <text>CONV-03: Detektor horizontalnih ivica (Napredni nivo)</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Napravite ručno kernel koji pronalazi <strong>horizontalne ivice</strong> (gornju i donju ivicu oblika). Gotovi filteri su skriveni. Potrebno je <strong>podudaranje &ge; 95%</strong>. Savet: ivica može da ide od tamnog ka svetlom i obrnuto.</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text><![CDATA[<p>Bravo! Uspešno ste podesili parametre simulacije tako da model zadovolji inženjerske kriterijume.</p>]]></text>
+    </generalfeedback>
+    <defaultgrade>2</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <simtype>convolution</simtype>
+    <scenario>shapes</scenario>
+    <targetparam1>0.9500</targetparam1>
+    <targetparam2>0.0000</targetparam2>
+    <targettolerance>0.1000</targettolerance>
+    <simconfig><![CDATA[{"target":"sobely","presets":false}]]></simconfig>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Odlično! Simulacioni model je konvergirao u optimalnu zonu.</p>]]></text>
+    </correctfeedback>
+    <correctfeedbackformat>1</correctfeedbackformat>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Delimično tačno. Model je blizu optimuma, ali još uvek nije dostigao željeno podudaranje.</p>]]></text>
     </partiallycorrectfeedback>
     <partiallycorrectfeedbackformat>1</partiallycorrectfeedbackformat>
     <incorrectfeedback format="html">

@@ -27,6 +27,7 @@ import {RegressionSim} from 'filter_aisim/sims/regression';
 import {KnnTreeSim} from 'filter_aisim/sims/knn_tree';
 import {KMeansSim} from 'filter_aisim/sims/kmeans';
 import {NeuralNetworkSim} from 'filter_aisim/sims/neural_network';
+import {ConvolutionSim} from 'filter_aisim/sims/convolution';
 
 /**
  * Per simulation type: the engine, the option that receives the question's scenario (and its default),
@@ -63,6 +64,12 @@ const SIMS = {
         scenario: ['dataset', 'xor'],
         // The network re-trains to the saved epochs from the same seed, so the review shows the student's own result.
         restore: {layers: 'layers', neurons: 'neurons', activation: 'activation', lr: 'lr', seed: 'seed', epochs: 'epochs'},
+    },
+    'convolution': {
+        Engine: ConvolutionSim,
+        scenario: ['image', 'shapes'],
+        // The target filter comes from the question's simconfig, e.g. {"target": "sobelx"}.
+        restore: {kernel: 'kernel', divisor: 'divisor', abs: 'abs'},
     },
 };
 

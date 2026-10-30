@@ -5,6 +5,15 @@ All notable changes to the **AI Simulation Question Type (`qtype_aisim`)** will 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.7.0] - 2026-10-30
+
+### Added
+- Convolution & Image Filters simulation type (`convolution`, needs filter_aisim 0.7.0). The scenario is the image,
+  the target filter goes into the simulation config (`{"target": "sobelx"}`, optionally `"presets": false`). Graded on
+  the match with the target image (R² ≥ target 1); down to target − tolerance (default 0.10) gives half marks.
+  A review shows the student's own kernel.
+- Three convolution questions in `demo/questions_aiforvet.xml` (now 21), with measured targets.
+
 ## [0.6.0] - 2026-10-30
 
 ### Added
