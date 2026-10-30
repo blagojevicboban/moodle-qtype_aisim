@@ -11,6 +11,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Backup and restore of the question options (`backup/moodle2`). Before this, a course backup kept the AI Simulation questions but lost their simulation, targets and feedback.
 - Restoring an older backup without options gives those questions the default simulation (confusion matrix), so they can still be opened and edited.
 
+### Fixed
+- Demo question bank (`demo/questions_aiforvet.xml`) and the demo setup scripts: most targets could not be reached or did not match the grading (gradient descent cost ≤ 0.05 while the minimum is 1.00, datasets `linear`, `noisy` and `rings` that do not exist, K-Means WCSS ≤ 0.85, R² in the text but MSE in the grading). All 15 questions now use real datasets and targets measured on the simulations.
+- Help for the target fields and the teacher guides explain what each target means for each simulation, with reachable values.
+
 ### Removed
 - The demo course backup (`demo/aiforvet_simulations_demo_course.mbz`) and the teacher guide section on restoring it; use `demo/questions_aiforvet.xml` for the ready-made questions.
 

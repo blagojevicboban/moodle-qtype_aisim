@@ -118,11 +118,11 @@ $q1Id = create_aisim_question(
     $qcat->id,
     'Zadatak 1: Medicinska dijagnostika (Prag odlučivanja)',
     '<p>U medicinskom skriningu prioritet je otkriti što veći procenat obolelih pacijenata (visok Recall), uz prihvatljivu preciznost.</p>' .
-    '<p><strong>Zadatak:</strong> Na interaktivnoj simulaciji podesite prag odlučivanja &theta; tako da postignete <strong>Recall &ge; 90%</strong> i <strong>Precision &ge; 70%</strong>.</p>',
+    '<p><strong>Zadatak:</strong> Na interaktivnoj simulaciji podesite prag odlučivanja &theta; tako da postignete <strong>Recall &ge; 95%</strong> i <strong>Precision &ge; 40%</strong>.</p>',
     'confusion_matrix',
     'medical',
-    0.90,
-    0.70,
+    0.95,
+    0.40,
     0.02
 );
 
@@ -131,12 +131,12 @@ $q2Id = create_aisim_question(
     $qcat->id,
     'Zadatak 2: Optimizacija funkcije troška gradijentnim spustom',
     '<p>Cilj obučavanja modela je pronalaženje težine $w$ koja minimizuje funkciju troška $J(w)$.</p>' .
-    '<p><strong>Zadatak:</strong> Podesite odgovarajuću stopu učenja &alpha; i početnu težinu $w_0$, a zatim pokrenite gradijentni spust tako da model konvergira u minimum sa greškom <strong>J(w) &le; 0.05</strong>.</p>',
+    '<p><strong>Zadatak:</strong> Podesite odgovarajuću stopu učenja &alpha; i početnu težinu $w_0$, a zatim pokrenite gradijentni spust tako da model konvergira u minimum sa greškom <strong>J(w) &le; 1.01</strong> (minimum ove funkcije je J(w) = 1.00).</p>',
     'gradient_descent',
     'convex',
-    0.05,
+    1.01,
     0.0,
-    0.02
+    0.05
 );
 
 // Pitanje 3: Polinomska regresija i regularizacija
@@ -144,11 +144,11 @@ $q3Id = create_aisim_question(
     $qcat->id,
     'Zadatak 3: Polinomska regresija i sprečavanje preprilagođavanja',
     '<p>Kompleksni modeli visokog stepena mogu memorisati šum u trening podacima i dovesti do loše generalizacije (Overfitting).</p>' .
-    '<p><strong>Zadatak:</strong> Odaberite optimalan stepen polinoma $d$ (maksimalno $d \le 5$) tako da postignete validacionu grešku <strong>Validation MSE &le; 0.15</strong>.</p>',
+    '<p><strong>Zadatak:</strong> Odaberite optimalan stepen polinoma $d$ (maksimalno $d \le 7$) tako da postignete validacionu grešku <strong>Validation MSE &le; 0.19</strong>.</p>',
     'regression',
     'sine',
-    0.15,
-    5.0,
+    0.19,
+    7.0,
     0.02
 );
 

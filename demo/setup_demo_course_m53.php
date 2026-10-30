@@ -316,36 +316,36 @@ $qids = [];
 $qids[] = create_aisim_question(
     $qcat->id,
     'Zadatak 1: Optimizacija stope učenja kod gradijentnog spusta',
-    '<p>Ispitujete ponašanje gradijentnog spusta na konveksnoj funkciji troška. Podesite stopu učenja (&alpha;) tako da algoritam uspešno konvergira ka globalnom minimumu u najviše 30 koraka (funkcija troška J(w) &le; 0.05).</p>',
-    'gradient_descent', 'convex', 0.0, 0.05, 0.05, '{"lr":0.10,"w0":3.50}'
+    '<p>Ispitujete ponašanje gradijentnog spusta na konveksnoj funkciji troška čiji je minimum J(w) = 1.00. Podesite stopu učenja (&alpha;) i pokrenite algoritam tako da trošak padne na J(w) &le; 1.01 (za J(w) &le; 1.06 pola poena).</p>',
+    'gradient_descent', 'convex', 1.01, 0.0, 0.05, '{"lr":0.10,"w0":3.50}'
 );
 
 $qids[] = create_aisim_question(
     $qcat->id,
     'Zadatak 2: Podešavanje praga odluke za kontrolu kvaliteta',
-    '<p>Radite u fabrici automobilskih delova. Podesite prag odlučivanja (&theta;) klasifikatora tako da dobijete optimalan balans između preciznosti i odziva (F1-score &ge; 0.85).</p>',
-    'confusion_matrix', 'quality', 0.85, 1.0, 0.05, '{"threshold":0.50}'
+    '<p>Radite u fabrici automobilskih delova. Podesite prag odlučivanja (&theta;) klasifikatora tako da uhvatite većinu škarta bez previše lažnih uzbuna: odziv (Recall) &ge; 0.80 i preciznost (Precision) &ge; 0.70.</p>',
+    'confusion_matrix', 'quality', 0.80, 0.70, 0.05, '{"threshold":0.30}'
 );
 
 $qids[] = create_aisim_question(
     $qcat->id,
     'Zadatak 3: Balansiranje složenosti polinomske regresije',
-    '<p>Za dati skup merenja, odaberite stepen polinoma i parametar regularizacije (&lambda;) tako da model generalizuje trend bez prepodešavanja (R² test skor &ge; 0.85).</p>',
-    'regression', 'sine', 0.85, 1.0, 0.05, '{"degree":3,"lambda":0.0}'
+    '<p>Za periodični signal sa šumom odaberite stepen polinoma najviše 7 tako da model generalizuje trend bez preprilagođavanja, uz validacionu grešku MSE &le; 0.19.</p>',
+    'regression', 'sine', 0.19, 7.0, 0.05, '{"degree":3,"lambda":0.0}'
 );
 
 $qids[] = create_aisim_question(
     $qcat->id,
     'Zadatak 4: Granice odlučivanja k-NN klasifikatora',
-    '<p>Podesite parametar k (broj suseda) kod k-NN klasifikatora na skupu podataka "Dva polumeseca" tako da tačnost klasifikacije bude barem 88%.</p>',
-    'knn_tree', 'moons', 0.88, 1.0, 0.04, '{"model":"knn","k":3}'
+    '<p>k-NN klasifikator na skupu podataka "Dva polumeseca" kreće sa k = 15 i granica je previše uglačana. Smanjite broj suseda k tako da tačnost klasifikacije bude barem 98%.</p>',
+    'knn_tree', 'moons', 0.98, 0.0, 0.05, '{"model":"knn","k":15}'
 );
 
 $qids[] = create_aisim_question(
     $qcat->id,
     'Zadatak 5: Pronalaženje klastera K-Means algoritmom',
-    '<p>Pokrenite K-Means algoritam sa odgovarajućim brojem klastera (K=3) i dovedite centroide do stabilne konvergencije.</p>',
-    'kmeans', 'blobs3', 0.85, 1.0, 0.05, '{"k":3}'
+    '<p>Pokrenite K-Means algoritam sa odgovarajućim brojem klastera (K = 3) i dovedite centroide do stabilne konvergencije, sa WCSS &le; 10.</p>',
+    'kmeans', 'blobs3', 10.0, 3.0, 0.05, '{"k":2}'
 );
 
 // Kreiranje Kviz aktivnosti.

@@ -14,10 +14,10 @@
 <!-- question: 8101  -->
   <question type="aisim">
     <name>
-      <text>GD-01: Podešavanje stabilne stope učenja regulatora (Osnovni nivo)</text>
+      <text>GD-01: Podešavanje stope učenja regulatora (Osnovni nivo)</text>
     </name>
     <questiontext format="html">
-      <text><![CDATA[<p>Ispitujete odziv algoritma optimizacije pri kalibraciji parametara elektromotornog pogona. Podesite umerenu stopu učenja (&alpha; = 0.10 - 0.20) kako bi funkcija troška pala ispod 0.05 u manje od 30 koraka bez prebačaja i oscilacija.</p>]]></text>
+      <text><![CDATA[<p>Kalibrišete parametar regulatora elektromotornog pogona. Funkcija troška je konveksna i njen minimum je J(w) = 1.00. Podesite stopu učenja &alpha; i pokrenite gradijentni spust tako da trošak padne na <strong>J(w) &le; 1.01</strong>. Za J(w) &le; 1.06 dobijate pola poena.</p>]]></text>
     </questiontext>
     <generalfeedback format="html">
       <text><![CDATA[<p>Bravo! Uspešno ste podesili parametre simulacije tako da model zadovolji inženjerske kriterijume.</p>]]></text>
@@ -28,8 +28,8 @@
     <idnumber></idnumber>
     <simtype>gradient_descent</simtype>
     <scenario>convex</scenario>
-    <targetparam1>0.0000</targetparam1>
-    <targetparam2>0.0500</targetparam2>
+    <targetparam1>1.0100</targetparam1>
+    <targetparam2>0.0000</targetparam2>
     <targettolerance>0.0500</targettolerance>
     <simconfig><![CDATA[{"lr":0.10,"w0":3.50}]]></simconfig>
     <correctfeedback format="html">
@@ -50,10 +50,10 @@
 <!-- question: 8102  -->
   <question type="aisim">
     <name>
-      <text>GD-02: Stabilizacija sistema pri visokoj početnoj grešci (Srednji nivo)</text>
+      <text>GD-02: Izlazak iz plitkog minimuma na platou (Srednji nivo)</text>
     </name>
     <questiontext format="html">
-      <text><![CDATA[<p>Početna pozicija je pomerena daleko od ravnoteže (w₀ = 4.80). Uočite opasnost od divergencije ako je stopa učenja prevelika. Podesite &alpha; u rasponu 0.04 - 0.08 tako da proces konvergira stabilno u globalni minimum.</p>]]></text>
+      <text><![CDATA[<p>Kriva troška ima plato i dva udubljenja: plitko (J &asymp; 2.30) i duboko (J &asymp; 1.82). Iz početne tačke w&#8320; = &minus;2.6 algoritam staje u plitkom udubljenju. Promenite početnu tačku ili stopu učenja tako da algoritam stigne do dubokog minimuma, <strong>J(w) &le; 1.85</strong>.</p>]]></text>
     </questiontext>
     <generalfeedback format="html">
       <text><![CDATA[<p>Bravo! Uspešno ste podesili parametre simulacije tako da model zadovolji inženjerske kriterijume.</p>]]></text>
@@ -63,11 +63,11 @@
     <hidden>0</hidden>
     <idnumber></idnumber>
     <simtype>gradient_descent</simtype>
-    <scenario>convex</scenario>
-    <targetparam1>0.0000</targetparam1>
-    <targetparam2>0.0400</targetparam2>
-    <targettolerance>0.0400</targettolerance>
-    <simconfig><![CDATA[{"lr":0.05,"w0":4.80}]]></simconfig>
+    <scenario>plateau</scenario>
+    <targetparam1>1.8500</targetparam1>
+    <targetparam2>0.0000</targetparam2>
+    <targettolerance>0.3000</targettolerance>
+    <simconfig><![CDATA[{"lr":0.05,"w0":-2.60}]]></simconfig>
     <correctfeedback format="html">
       <text><![CDATA[<p>Odlično! Simulacioni model je konvergirao u optimalnu zonu.</p>]]></text>
     </correctfeedback>
@@ -86,10 +86,10 @@
 <!-- question: 8103  -->
   <question type="aisim">
     <name>
-      <text>GD-03: Prevazilaženje lokalnih minimuma kod multimodalnog pejzaža (Napredni nivo)</text>
+      <text>GD-03: Globalni minimum nekonveksne funkcije (Napredni nivo)</text>
     </name>
     <questiontext format="html">
-      <text><![CDATA[<p>Funkcija troška je nekonveksna i ima više lokalnih minimuma. Odaberite početnu tačku i dovoljno dinamičnu stopu učenja (&alpha; &approx; 0.15) kako algoritam ne bi ostao zarobljen u plitkom lokalnom minimumu, već dostigao zonu najnižeg troška (J(w) &le; 0.10).</p>]]></text>
+      <text><![CDATA[<p>Nekonveksna kriva troška ima lokalni minimum (J &asymp; 2.42) i globalni minimum (J &asymp; 0.98). Iz w&#8320; = &minus;2.2 algoritam završava u lokalnom minimumu. Pronađite početnu tačku i stopu učenja kojima dostižete globalni minimum, <strong>J(w) &le; 1.00</strong>.</p>]]></text>
     </questiontext>
     <generalfeedback format="html">
       <text><![CDATA[<p>Bravo! Uspešno ste podesili parametre simulacije tako da model zadovolji inženjerske kriterijume.</p>]]></text>
@@ -100,10 +100,10 @@
     <idnumber></idnumber>
     <simtype>gradient_descent</simtype>
     <scenario>nonconvex</scenario>
-    <targetparam1>0.0000</targetparam1>
-    <targetparam2>0.1000</targetparam2>
-    <targettolerance>0.0500</targettolerance>
-    <simconfig><![CDATA[{"profile":"nonconvex","lr":0.15,"w0":1.20}]]></simconfig>
+    <targetparam1>1.0000</targetparam1>
+    <targetparam2>0.0000</targetparam2>
+    <targettolerance>0.1000</targettolerance>
+    <simconfig><![CDATA[{"lr":0.08,"w0":-2.20}]]></simconfig>
     <correctfeedback format="html">
       <text><![CDATA[<p>Odlično! Simulacioni model je konvergirao u optimalnu zonu.</p>]]></text>
     </correctfeedback>
@@ -122,10 +122,10 @@
 <!-- question: 8104  -->
   <question type="aisim">
     <name>
-      <text>CM-01: Balansiranje odziva i preciznosti kod detekcije škarta (Osnovni nivo)</text>
+      <text>CM-01: Balans odziva i preciznosti kod detekcije škarta (Osnovni nivo)</text>
     </name>
     <questiontext format="html">
-      <text><![CDATA[<p>U industrijskoj kontroli kvaliteta na pokretnoj traci, podesite prag odluke (&theta;) klasifikatora tako da se postigne optimalan balans između lažnih uzbuna i propuštenog škarta (F1-score &ge; 0.85).</p>]]></text>
+      <text><![CDATA[<p>Na traci za kontrolu kvaliteta klasifikator prepoznaje škart. Podesite prag odluke &theta; tako da uhvatite većinu škarta bez previše lažnih uzbuna: <strong>odziv (Recall) &ge; 0.80 i preciznost (Precision) &ge; 0.70</strong>. Ako ispunite samo jedan uslov, dobijate pola poena.</p>]]></text>
     </questiontext>
     <generalfeedback format="html">
       <text><![CDATA[<p>Bravo! Uspešno ste podesili parametre simulacije tako da model zadovolji inženjerske kriterijume.</p>]]></text>
@@ -136,10 +136,10 @@
     <idnumber></idnumber>
     <simtype>confusion_matrix</simtype>
     <scenario>quality</scenario>
-    <targetparam1>0.8500</targetparam1>
-    <targetparam2>1.0000</targetparam2>
+    <targetparam1>0.8000</targetparam1>
+    <targetparam2>0.7000</targetparam2>
     <targettolerance>0.0500</targettolerance>
-    <simconfig><![CDATA[{"threshold":0.50}]]></simconfig>
+    <simconfig><![CDATA[{"threshold":0.30}]]></simconfig>
     <correctfeedback format="html">
       <text><![CDATA[<p>Odlično! Simulacioni model je konvergirao u optimalnu zonu.</p>]]></text>
     </correctfeedback>
@@ -158,10 +158,10 @@
 <!-- question: 8105  -->
   <question type="aisim">
     <name>
-      <text>CM-02: Minimizacija lažno negativnih rezultata u dijagnostici (Srednji nivo)</text>
+      <text>CM-02: Bez propuštenih pacijenata u medicinskom skriningu (Srednji nivo)</text>
     </name>
     <questiontext format="html">
-      <text><![CDATA[<p>U medicinskoj dijagnostici (npr. skrining senzori) propuštanje bolesnog pacijenta (False Negative) je kritična greška. Spustite prag &theta; ka vrednosti 0.30 - 0.35 kako bi odziv (Recall) bio visok, uz održavanje F1-skora &ge; 0.80.</p>]]></text>
+      <text><![CDATA[<p>U medicinskom skriningu propušten bolesnik (lažno negativan rezultat) je najteža greška. Podesite prag &theta; tako da <strong>odziv bude &ge; 0.95</strong>, uz <strong>preciznost &ge; 0.40</strong>. Ako ispunite samo jedan uslov, dobijate pola poena.</p>]]></text>
     </questiontext>
     <generalfeedback format="html">
       <text><![CDATA[<p>Bravo! Uspešno ste podesili parametre simulacije tako da model zadovolji inženjerske kriterijume.</p>]]></text>
@@ -172,10 +172,10 @@
     <idnumber></idnumber>
     <simtype>confusion_matrix</simtype>
     <scenario>medical</scenario>
-    <targetparam1>0.8000</targetparam1>
-    <targetparam2>1.0000</targetparam2>
+    <targetparam1>0.9500</targetparam1>
+    <targetparam2>0.4000</targetparam2>
     <targettolerance>0.0500</targettolerance>
-    <simconfig><![CDATA[{"scenario":"medical","threshold":0.35}]]></simconfig>
+    <simconfig><![CDATA[{"threshold":0.50}]]></simconfig>
     <correctfeedback format="html">
       <text><![CDATA[<p>Odlično! Simulacioni model je konvergirao u optimalnu zonu.</p>]]></text>
     </correctfeedback>
@@ -194,10 +194,10 @@
 <!-- question: 8106  -->
   <question type="aisim">
     <name>
-      <text>CM-03: Minimizacija lažnih uzbuna kod mrežnih filtera (Napredni nivo)</text>
+      <text>CM-03: Spam filter bez blokiranja ispravne pošte (Napredni nivo)</text>
     </name>
     <questiontext format="html">
-      <text><![CDATA[<p>Mrežni firewall i spam filter ne smeju blokirati legitimnu komunikaciju zaposlenih (False Positive). Podesite viši prag &theta; (&approx; 0.65 - 0.75) tako da preciznost (Precision) bude dominantna, uz ostvaren F1-score &ge; 0.82.</p>]]></text>
+      <text><![CDATA[<p>Spam filter ne sme da blokira ispravnu poštu (lažno pozitivan rezultat). Podesite prag &theta; tako da <strong>preciznost bude &ge; 0.90</strong>, a da filter ipak uhvati <strong>odziv &ge; 0.50</strong>. Ako ispunite samo jedan uslov, dobijate pola poena.</p>]]></text>
     </questiontext>
     <generalfeedback format="html">
       <text><![CDATA[<p>Bravo! Uspešno ste podesili parametre simulacije tako da model zadovolji inženjerske kriterijume.</p>]]></text>
@@ -208,10 +208,10 @@
     <idnumber></idnumber>
     <simtype>confusion_matrix</simtype>
     <scenario>spam</scenario>
-    <targetparam1>0.8200</targetparam1>
-    <targetparam2>1.0000</targetparam2>
+    <targetparam1>0.5000</targetparam1>
+    <targetparam2>0.9000</targetparam2>
     <targettolerance>0.0500</targettolerance>
-    <simconfig><![CDATA[{"scenario":"spam","threshold":0.65}]]></simconfig>
+    <simconfig><![CDATA[{"threshold":0.50}]]></simconfig>
     <correctfeedback format="html">
       <text><![CDATA[<p>Odlično! Simulacioni model je konvergirao u optimalnu zonu.</p>]]></text>
     </correctfeedback>
@@ -230,10 +230,10 @@
 <!-- question: 8107  -->
   <question type="aisim">
     <name>
-      <text>REG-01: Modelovanje linearnog trenda senzora temperature (Osnovni nivo)</text>
+      <text>REG-01: Parabolična zavisnost merenja (Osnovni nivo)</text>
     </name>
     <questiontext format="html">
-      <text><![CDATA[<p>Za kalibraciju senzora sa linearnim odzivom, odaberite stepen polinoma d=1 i proverite da model adekvatno prati merenja uz R² test skor &ge; 0.85.</p>]]></text>
+      <text><![CDATA[<p>Merenja prate paraboličnu zavisnost, a prava linija (d = 1) je ne prati. Izaberite <strong>stepen polinoma najviše 2</strong> tako da <strong>validaciona greška bude MSE &le; 0.14</strong>. Ako ispunite samo jedan uslov, dobijate pola poena.</p>]]></text>
     </questiontext>
     <generalfeedback format="html">
       <text><![CDATA[<p>Bravo! Uspešno ste podesili parametre simulacije tako da model zadovolji inženjerske kriterijume.</p>]]></text>
@@ -243,11 +243,11 @@
     <hidden>0</hidden>
     <idnumber></idnumber>
     <simtype>regression</simtype>
-    <scenario>linear</scenario>
-    <targetparam1>0.8500</targetparam1>
-    <targetparam2>1.0000</targetparam2>
+    <scenario>quadratic</scenario>
+    <targetparam1>0.1400</targetparam1>
+    <targetparam2>2.0000</targetparam2>
     <targettolerance>0.0500</targettolerance>
-    <simconfig><![CDATA[{"dataset":"linear","degree":1,"lambda":0.0}]]></simconfig>
+    <simconfig><![CDATA[{"degree":1,"lambda":0.0}]]></simconfig>
     <correctfeedback format="html">
       <text><![CDATA[<p>Odlično! Simulacioni model je konvergirao u optimalnu zonu.</p>]]></text>
     </correctfeedback>
@@ -266,10 +266,10 @@
 <!-- question: 8108  -->
   <question type="aisim">
     <name>
-      <text>REG-02: Aproksimacija periodičnog harmonijskog signala (Srednji nivo)</text>
+      <text>REG-02: Aproksimacija periodičnog signala (Srednji nivo)</text>
     </name>
     <questiontext format="html">
-      <text><![CDATA[<p>Za dati periodični harmonijski signal sa šumom, podesite optimalan stepen polinoma (d=3) kako bi kriva opisala talas bez prekomernih oscilacija na krajevima (R² test &ge; 0.88).</p>]]></text>
+      <text><![CDATA[<p>Periodični signal sa šumom: prenizak stepen ne prati talas, a previsok preprilagođava (prati šum). Izaberite <strong>stepen polinoma najviše 7</strong> tako da <strong>validaciona greška bude MSE &le; 0.19</strong>. Ako ispunite samo jedan uslov, dobijate pola poena.</p>]]></text>
     </questiontext>
     <generalfeedback format="html">
       <text><![CDATA[<p>Bravo! Uspešno ste podesili parametre simulacije tako da model zadovolji inženjerske kriterijume.</p>]]></text>
@@ -280,10 +280,10 @@
     <idnumber></idnumber>
     <simtype>regression</simtype>
     <scenario>sine</scenario>
-    <targetparam1>0.8800</targetparam1>
-    <targetparam2>1.0000</targetparam2>
+    <targetparam1>0.1900</targetparam1>
+    <targetparam2>7.0000</targetparam2>
     <targettolerance>0.0500</targettolerance>
-    <simconfig><![CDATA[{"dataset":"sine","degree":3,"lambda":0.0}]]></simconfig>
+    <simconfig><![CDATA[{"degree":3,"lambda":0.0}]]></simconfig>
     <correctfeedback format="html">
       <text><![CDATA[<p>Odlično! Simulacioni model je konvergirao u optimalnu zonu.</p>]]></text>
     </correctfeedback>
@@ -302,10 +302,10 @@
 <!-- question: 8109  -->
   <question type="aisim">
     <name>
-      <text>REG-03: Primena L2 regularizacije za suzbijanje oscilacija (Napredni nivo)</text>
+      <text>REG-03: L2 regularizacija na podacima o motoru (Napredni nivo)</text>
     </name>
     <questiontext format="html">
-      <text><![CDATA[<p>Na kompleksnom šumnom skupu podataka, stepen d=5 dovodi do prepodešavanja (overfitting). Uvedite umerenu L2 regularizaciju (&lambda; = 0.01 - 0.10) kako biste obuzdali oscilacije i generalizovali trend na novim tačkama (R² &ge; 0.80).</p>]]></text>
+      <text><![CDATA[<p>Na podacima o potrošnji motora nijedan polinom bez regularizacije ne spušta validacionu grešku ispod 0.138. Izaberite <strong>stepen polinoma najviše 4</strong>, uključite <strong>L2 regularizaciju &lambda;</strong> i postignite <strong>validacionu grešku MSE &le; 0.135</strong>. Ako ispunite samo jedan uslov, dobijate pola poena.</p>]]></text>
     </questiontext>
     <generalfeedback format="html">
       <text><![CDATA[<p>Bravo! Uspešno ste podesili parametre simulacije tako da model zadovolji inženjerske kriterijume.</p>]]></text>
@@ -315,11 +315,11 @@
     <hidden>0</hidden>
     <idnumber></idnumber>
     <simtype>regression</simtype>
-    <scenario>noisy</scenario>
-    <targetparam1>0.8000</targetparam1>
-    <targetparam2>1.0000</targetparam2>
+    <scenario>engine</scenario>
+    <targetparam1>0.1350</targetparam1>
+    <targetparam2>4.0000</targetparam2>
     <targettolerance>0.0500</targettolerance>
-    <simconfig><![CDATA[{"dataset":"noisy","degree":5,"lambda":0.01}]]></simconfig>
+    <simconfig><![CDATA[{"degree":9,"lambda":0.0}]]></simconfig>
     <correctfeedback format="html">
       <text><![CDATA[<p>Odlično! Simulacioni model je konvergirao u optimalnu zonu.</p>]]></text>
     </correctfeedback>
@@ -338,10 +338,10 @@
 <!-- question: 8110  -->
   <question type="aisim">
     <name>
-      <text>KNN-01: k-NN klasifikacija prepletenih nelinearnih klasa (Osnovni nivo)</text>
+      <text>KNN-01: k-NN na prepletenim polumesecima (Osnovni nivo)</text>
     </name>
     <questiontext format="html">
-      <text><![CDATA[<p>Podesite broj suseda (k = 3 ili k = 5) kod k-NN klasifikatora na skupu podataka "Dva polumeseca" tako da tačnost razdvajanja klasa bude barem 88%.</p>]]></text>
+      <text><![CDATA[<p>Klasifikator k-NN na skupu „Dva polumeseca“ kreće sa k = 15 i granica je previše uglačana, pa greši na vrhovima polumeseca. Smanjite broj suseda k tako da <strong>tačnost bude &ge; 98%</strong>. Za tačnost &ge; 93% dobijate pola poena.</p>]]></text>
     </questiontext>
     <generalfeedback format="html">
       <text><![CDATA[<p>Bravo! Uspešno ste podesili parametre simulacije tako da model zadovolji inženjerske kriterijume.</p>]]></text>
@@ -352,10 +352,10 @@
     <idnumber></idnumber>
     <simtype>knn_tree</simtype>
     <scenario>moons</scenario>
-    <targetparam1>0.8800</targetparam1>
-    <targetparam2>1.0000</targetparam2>
-    <targettolerance>0.0400</targettolerance>
-    <simconfig><![CDATA[{"model":"knn","dataset":"moons","k":3}]]></simconfig>
+    <targetparam1>0.9800</targetparam1>
+    <targetparam2>0.0000</targetparam2>
+    <targettolerance>0.0500</targettolerance>
+    <simconfig><![CDATA[{"model":"knn","k":15}]]></simconfig>
     <correctfeedback format="html">
       <text><![CDATA[<p>Odlično! Simulacioni model je konvergirao u optimalnu zonu.</p>]]></text>
     </correctfeedback>
@@ -374,10 +374,10 @@
 <!-- question: 8111  -->
   <question type="aisim">
     <name>
-      <text>TREE-01: Pravougaona particija prostora Stablom odlučivanja (Srednji nivo)</text>
+      <text>TREE-01: Stablo odlučivanja na koncentričnim krugovima (Srednji nivo)</text>
     </name>
     <questiontext format="html">
-      <text><![CDATA[<p>Izaberite model Stabla odlučivanja (Decision Tree) i podesite dubinu stabla na 3 ili 4 kako bi ortogonalni rezovi efikasno obuhvatili unutrašnji prsten na skupu "Krugovi" uz tačnost &ge; 85%.</p>]]></text>
+      <text><![CDATA[<p>Stablo odlučivanja pravi samo pravougaone rezove paralelne osama. Na skupu „Krugovi“ povećajte dubinu stabla tako da rezovi obuhvate unutrašnji krug, uz <strong>tačnost &ge; 92%</strong>. Za tačnost &ge; 87% dobijate pola poena.</p>]]></text>
     </questiontext>
     <generalfeedback format="html">
       <text><![CDATA[<p>Bravo! Uspešno ste podesili parametre simulacije tako da model zadovolji inženjerske kriterijume.</p>]]></text>
@@ -388,10 +388,10 @@
     <idnumber></idnumber>
     <simtype>knn_tree</simtype>
     <scenario>circles</scenario>
-    <targetparam1>0.8500</targetparam1>
-    <targetparam2>1.0000</targetparam2>
+    <targetparam1>0.9200</targetparam1>
+    <targetparam2>0.0000</targetparam2>
     <targettolerance>0.0500</targettolerance>
-    <simconfig><![CDATA[{"model":"tree","dataset":"circles","depth":3}]]></simconfig>
+    <simconfig><![CDATA[{"model":"tree","depth":1}]]></simconfig>
     <correctfeedback format="html">
       <text><![CDATA[<p>Odlično! Simulacioni model je konvergirao u optimalnu zonu.</p>]]></text>
     </correctfeedback>
@@ -410,10 +410,10 @@
 <!-- question: 8112  -->
   <question type="aisim">
     <name>
-      <text>KNN-02: Otpornost na autlajere podešavanjem k komšija (Napredni nivo)</text>
+      <text>TREE-02: Stablo odlučivanja na zakrivljenoj granici (Napredni nivo)</text>
     </name>
     <questiontext format="html">
-      <text><![CDATA[<p>Na skupu podataka sa preklapajućim tačkama šuma, malo k=1 kreira lažna izolovana ostrva. Povećajte k na 7 ili 9 kako bi se dobila stabilna, ujednačena granica razdvajanja sa tačnošću &ge; 90%.</p>]]></text>
+      <text><![CDATA[<p>Na skupu „Dva polumeseca“ granica između klasa je zakrivljena, a stablo odlučivanja može da je prati samo stepenasto. Pronađite dubinu stabla kojom postižete <strong>tačnost &ge; 95%</strong>. Za tačnost &ge; 90% dobijate pola poena.</p>]]></text>
     </questiontext>
     <generalfeedback format="html">
       <text><![CDATA[<p>Bravo! Uspešno ste podesili parametre simulacije tako da model zadovolji inženjerske kriterijume.</p>]]></text>
@@ -423,11 +423,11 @@
     <hidden>0</hidden>
     <idnumber></idnumber>
     <simtype>knn_tree</simtype>
-    <scenario>blobs</scenario>
-    <targetparam1>0.9000</targetparam1>
-    <targetparam2>1.0000</targetparam2>
-    <targettolerance>0.0400</targettolerance>
-    <simconfig><![CDATA[{"model":"knn","dataset":"blobs","k":7}]]></simconfig>
+    <scenario>moons</scenario>
+    <targetparam1>0.9500</targetparam1>
+    <targetparam2>0.0000</targetparam2>
+    <targettolerance>0.0500</targettolerance>
+    <simconfig><![CDATA[{"model":"tree","depth":1}]]></simconfig>
     <correctfeedback format="html">
       <text><![CDATA[<p>Odlično! Simulacioni model je konvergirao u optimalnu zonu.</p>]]></text>
     </correctfeedback>
@@ -446,10 +446,10 @@
 <!-- question: 8113  -->
   <question type="aisim">
     <name>
-      <text>KM-01: Segmentacija senzorskih merenja na 3 grupe (Osnovni nivo)</text>
+      <text>KM-01: Segmentacija senzorskih merenja u 3 grupe (Osnovni nivo)</text>
     </name>
     <questiontext format="html">
-      <text><![CDATA[<p>Postavite broj klastera na K = 3 i pokrenite iteracije do stabilne konvergencije centroida (stabilna minimalna inercija).</p>]]></text>
+      <text><![CDATA[<p>Senzorska merenja čine tri grupe. Postavite <strong>K = 3</strong> i pokrenite algoritam do konvergencije, sa <strong>WCSS (inercija) &le; 10</strong>.</p>]]></text>
     </questiontext>
     <generalfeedback format="html">
       <text><![CDATA[<p>Bravo! Uspešno ste podesili parametre simulacije tako da model zadovolji inženjerske kriterijume.</p>]]></text>
@@ -460,10 +460,10 @@
     <idnumber></idnumber>
     <simtype>kmeans</simtype>
     <scenario>blobs3</scenario>
-    <targetparam1>0.8500</targetparam1>
-    <targetparam2>1.0000</targetparam2>
+    <targetparam1>10.0000</targetparam1>
+    <targetparam2>3.0000</targetparam2>
     <targettolerance>0.0500</targettolerance>
-    <simconfig><![CDATA[{"dataset":"blobs3","k":3}]]></simconfig>
+    <simconfig><![CDATA[{"k":2}]]></simconfig>
     <correctfeedback format="html">
       <text><![CDATA[<p>Odlično! Simulacioni model je konvergirao u optimalnu zonu.</p>]]></text>
     </correctfeedback>
@@ -482,10 +482,10 @@
 <!-- question: 8114  -->
   <question type="aisim">
     <name>
-      <text>KM-02: Klasterovanje 4 industrijska režima rada mašine (Srednji nivo)</text>
+      <text>KM-02: Četiri radna režima mašine (Srednji nivo)</text>
     </name>
     <questiontext format="html">
-      <text><![CDATA[<p>Industrijski pogon radi u 4 karakteristična radna stanja. Podesite K = 4 i izvedite konvergenciju do stabilnog rasporeda sva 4 centroida u centrima klastera.</p>]]></text>
+      <text><![CDATA[<p>Mašina radi u četiri radna režima. Sa <strong>K = 4</strong> dovedite algoritam do konvergencije sa <strong>WCSS &le; 10</strong>. Ako centroidi zaglave u lošem rešenju (WCSS oko 30&ndash;40), ponovo ih postavite i pokušajte opet.</p>]]></text>
     </questiontext>
     <generalfeedback format="html">
       <text><![CDATA[<p>Bravo! Uspešno ste podesili parametre simulacije tako da model zadovolji inženjerske kriterijume.</p>]]></text>
@@ -496,10 +496,10 @@
     <idnumber></idnumber>
     <simtype>kmeans</simtype>
     <scenario>blobs4</scenario>
-    <targetparam1>0.8500</targetparam1>
-    <targetparam2>1.0000</targetparam2>
+    <targetparam1>10.0000</targetparam1>
+    <targetparam2>4.0000</targetparam2>
     <targettolerance>0.0500</targettolerance>
-    <simconfig><![CDATA[{"dataset":"blobs4","k":4}]]></simconfig>
+    <simconfig><![CDATA[{"k":4}]]></simconfig>
     <correctfeedback format="html">
       <text><![CDATA[<p>Odlično! Simulacioni model je konvergirao u optimalnu zonu.</p>]]></text>
     </correctfeedback>
@@ -518,10 +518,10 @@
 <!-- question: 8115  -->
   <question type="aisim">
     <name>
-      <text>KM-03: Analiza ponašanja algoritma na koncentričnim prstenovima (Napredni nivo)</text>
+      <text>KM-03: Klasterovanje podataka bez prirodnih grupa (Napredni nivo)</text>
     </name>
     <questiontext format="html">
-      <text><![CDATA[<p>Ispitajte ponašanje algoritma zasnovanog na Euklidskom rastojanju na koncentričnim prstenovima. Uočite zašto klasični K-Means seče prstenove umesto da ih prati, i pronađite poziciju minimalne inercije za K=2.</p>]]></text>
+      <text><![CDATA[<p>Ravnomerno raspoređena merenja nemaju prirodne grupe, pa na grafiku lakta nema jasnog preloma. Postavite <strong>K = 4</strong> i pokrenite algoritam do konvergencije, sa <strong>WCSS &le; 25</strong>. Razmislite: da li ovi klasteri nešto znače?</p>]]></text>
     </questiontext>
     <generalfeedback format="html">
       <text><![CDATA[<p>Bravo! Uspešno ste podesili parametre simulacije tako da model zadovolji inženjerske kriterijume.</p>]]></text>
@@ -531,11 +531,11 @@
     <hidden>0</hidden>
     <idnumber></idnumber>
     <simtype>kmeans</simtype>
-    <scenario>rings</scenario>
-    <targetparam1>0.7000</targetparam1>
-    <targetparam2>1.0000</targetparam2>
-    <targettolerance>0.0800</targettolerance>
-    <simconfig><![CDATA[{"dataset":"rings","k":2}]]></simconfig>
+    <scenario>uniform</scenario>
+    <targetparam1>25.0000</targetparam1>
+    <targetparam2>4.0000</targetparam2>
+    <targettolerance>0.0500</targettolerance>
+    <simconfig><![CDATA[{"k":2}]]></simconfig>
     <correctfeedback format="html">
       <text><![CDATA[<p>Odlično! Simulacioni model je konvergirao u optimalnu zonu.</p>]]></text>
     </correctfeedback>
