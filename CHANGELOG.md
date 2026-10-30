@@ -5,6 +5,15 @@ All notable changes to the **AI Simulation Question Type (`qtype_aisim`)** will 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.8.0] - 2026-10-30
+
+### Added
+- Reinforcement Learning (Q-learning) simulation type (`q_learning`, needs filter_aisim 0.8.0). The scenario is the
+  map (maze / cliff / treasure). Full marks when the learned policy reaches the goal in at most target 1 steps after
+  at most target 2 training episodes (0 = no limit); reaching the goal otherwise gives half marks. A review re-trains
+  the agent to the student's saved episodes and shows the student's own policy.
+- Three Q-learning questions in `demo/questions_aiforvet.xml` (now 24), with measured targets.
+
 ## [0.7.0] - 2026-10-30
 
 ### Added

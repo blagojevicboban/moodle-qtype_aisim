@@ -9,7 +9,7 @@
 
 Developed as part of the Erasmus+ **AI for VET** project (*AI for Vocational Education and Training* — [aiforvet.eu](https://aiforvet.eu/)).
 
-> Status: **v0.7.0 (Alpha)**.
+> Status: **v0.8.0 (Alpha)**.
 
 ---
 
@@ -17,7 +17,7 @@ Developed as part of the Erasmus+ **AI for VET** project (*AI for Vocational Edu
 
 | Feature | Description |
 |---|---|
-| 🎯 **7 Interactive AI Sim Engines** | Confusion Matrix & Threshold, Gradient Descent Optimization, Polynomial Regression & Overfitting, Decision Boundaries (k-NN / Decision Tree), K-Means Clustering, Perceptron & Neural Network, and Convolution & Image Filters. |
+| 🎯 **8 Interactive AI Sim Engines** | Confusion Matrix & Threshold, Gradient Descent Optimization, Polynomial Regression & Overfitting, Decision Boundaries (k-NN / Decision Tree), K-Means Clustering, Perceptron & Neural Network, Convolution & Image Filters, and Reinforcement Learning (Q-learning). |
 | ⚡ **Automatic Real-Time Grading** | Evaluates student model parameters and resulting metrics (`recall`, `precision`, `loss`, `val_mse`, `accuracy`, `wcss`) against question targets with partial credit support. |
 | 🧑‍🏫 **Interactive Review & Badges** | In quiz review mode, students and teachers see the submitted simulation state locked, accompanied by a status badge (100% Achieved, 50% Partial, 0% Not Met). |
 | 💾 **Quiz Autosave Integration** | Automatically writes serialized JSON model state to hidden form input and triggers Moodle quiz autosave on changes. |

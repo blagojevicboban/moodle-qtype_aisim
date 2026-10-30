@@ -3,10 +3,10 @@
 <!-- question: 0  -->
   <question type="category">
     <category>
-      <text>$course$/top/AI za VET - Baza simulacionih zadataka (21 pitanje)</text>
+      <text>$course$/top/AI za VET - Baza simulacionih zadataka (24 pitanja)</text>
     </category>
     <info format="html">
-      <text>Kompletna baza sa 21 interaktivnim zadatkom sa automatskim ocenjivanjem za projekat AI for VET (Erasmus+), razvrstanih u 3 nivoa težine po svim simulacionim modulima.</text>
+      <text>Kompletna baza sa 24 interaktivna zadatka sa automatskim ocenjivanjem za projekat AI for VET (Erasmus+), razvrstanih u 3 nivoa težine po svim simulacionim modulima.</text>
     </info>
     <idnumber></idnumber>
   </question>
@@ -758,6 +758,114 @@
     <correctfeedbackformat>1</correctfeedbackformat>
     <partiallycorrectfeedback format="html">
       <text><![CDATA[<p>Delimično tačno. Model je blizu optimuma, ali još uvek nije dostigao željeno podudaranje.</p>]]></text>
+    </partiallycorrectfeedback>
+    <partiallycorrectfeedbackformat>1</partiallycorrectfeedbackformat>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Netačno. Pokušajte ponovo da promenite parametre.</p>]]></text>
+    </incorrectfeedback>
+    <incorrectfeedbackformat>1</incorrectfeedbackformat>
+    <shownumcorrect>0</shownumcorrect>
+  </question>
+
+<!-- question: 8122  -->
+  <question type="aisim">
+    <name>
+      <text>QL-01: Agent u lavirintu (Osnovni nivo)</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Agent ne zna gde je cilj i uči samo iz nagrada. Trenirajte ga tako da njegova naučena politika vodi <strong>najkraćim putem do cilja (10 koraka)</strong>, za <strong>najviše 200 epizoda</strong>. Posmatrajte kako se boje polja i strelice menjaju tokom učenja.</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text><![CDATA[<p>Bravo! Uspešno ste podesili parametre simulacije tako da model zadovolji inženjerske kriterijume.</p>]]></text>
+    </generalfeedback>
+    <defaultgrade>1</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <simtype>q_learning</simtype>
+    <scenario>maze</scenario>
+    <targetparam1>10.0000</targetparam1>
+    <targetparam2>200.0000</targetparam2>
+    <targettolerance>0.0000</targettolerance>
+    <simconfig><![CDATA[{}]]></simconfig>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Odlično! Simulacioni model je konvergirao u optimalnu zonu.</p>]]></text>
+    </correctfeedback>
+    <correctfeedbackformat>1</correctfeedbackformat>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Delimično tačno. Model je blizu optimuma, ali još uvek još ne ispunjava sve uslove.</p>]]></text>
+    </partiallycorrectfeedback>
+    <partiallycorrectfeedbackformat>1</partiallycorrectfeedbackformat>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Netačno. Pokušajte ponovo da promenite parametre.</p>]]></text>
+    </incorrectfeedback>
+    <incorrectfeedbackformat>1</incorrectfeedbackformat>
+    <shownumcorrect>0</shownumcorrect>
+  </question>
+
+<!-- question: 8123  -->
+  <question type="aisim">
+    <name>
+      <text>QL-02: Hod po litici (Srednji nivo)</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Najkraći put do cilja vodi tik uz liticu, a pad donosi &minus;10. Podesite &alpha;, &gamma; i &epsilon; tako da naučena politika ide <strong>najkraćim putem (11 koraka)</strong>, za <strong>najviše 500 epizoda</strong>. Zašto je prosečna nagrada tokom treninga niža kada je &epsilon; veliko?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text><![CDATA[<p>Bravo! Uspešno ste podesili parametre simulacije tako da model zadovolji inženjerske kriterijume.</p>]]></text>
+    </generalfeedback>
+    <defaultgrade>1</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <simtype>q_learning</simtype>
+    <scenario>cliff</scenario>
+    <targetparam1>11.0000</targetparam1>
+    <targetparam2>500.0000</targetparam2>
+    <targettolerance>0.0000</targettolerance>
+    <simconfig><![CDATA[{}]]></simconfig>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Odlično! Simulacioni model je konvergirao u optimalnu zonu.</p>]]></text>
+    </correctfeedback>
+    <correctfeedbackformat>1</correctfeedbackformat>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Delimično tačno. Model je blizu optimuma, ali još uvek još ne ispunjava sve uslove.</p>]]></text>
+    </partiallycorrectfeedback>
+    <partiallycorrectfeedbackformat>1</partiallycorrectfeedbackformat>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Netačno. Pokušajte ponovo da promenite parametre.</p>]]></text>
+    </incorrectfeedback>
+    <incorrectfeedbackformat>1</incorrectfeedbackformat>
+    <shownumcorrect>0</shownumcorrect>
+  </question>
+
+<!-- question: 8124  -->
+  <question type="aisim">
+    <name>
+      <text>QL-03: Malo blago blizu ili veliko daleko (Napredni nivo)</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Agent sada bira malo blago T (+3) u blizini. Promenite <strong>faktor umanjenja &gamma;</strong> i <strong>istraživanje &epsilon;</strong> tako da nauči da ide do velikog cilja G (+10) <strong>u 4 koraka</strong>, za najviše 1000 epizoda. Objasnite ulogu svakog parametra.</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text><![CDATA[<p>Bravo! Uspešno ste podesili parametre simulacije tako da model zadovolji inženjerske kriterijume.</p>]]></text>
+    </generalfeedback>
+    <defaultgrade>2</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <simtype>q_learning</simtype>
+    <scenario>treasure</scenario>
+    <targetparam1>4.0000</targetparam1>
+    <targetparam2>1000.0000</targetparam2>
+    <targettolerance>0.0000</targettolerance>
+    <simconfig><![CDATA[{"gamma":0.5,"epsilon":0.1}]]></simconfig>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Odlično! Simulacioni model je konvergirao u optimalnu zonu.</p>]]></text>
+    </correctfeedback>
+    <correctfeedbackformat>1</correctfeedbackformat>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Delimično tačno. Model je blizu optimuma, ali još uvek još ne ispunjava sve uslove.</p>]]></text>
     </partiallycorrectfeedback>
     <partiallycorrectfeedbackformat>1</partiallycorrectfeedbackformat>
     <incorrectfeedback format="html">

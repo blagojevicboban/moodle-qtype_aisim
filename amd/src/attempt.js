@@ -28,6 +28,7 @@ import {KnnTreeSim} from 'filter_aisim/sims/knn_tree';
 import {KMeansSim} from 'filter_aisim/sims/kmeans';
 import {NeuralNetworkSim} from 'filter_aisim/sims/neural_network';
 import {ConvolutionSim} from 'filter_aisim/sims/convolution';
+import {QLearningSim} from 'filter_aisim/sims/q_learning';
 
 /**
  * Per simulation type: the engine, the option that receives the question's scenario (and its default),
@@ -70,6 +71,12 @@ const SIMS = {
         scenario: ['image', 'shapes'],
         // The target filter comes from the question's simconfig, e.g. {"target": "sobelx"}.
         restore: {kernel: 'kernel', divisor: 'divisor', abs: 'abs'},
+    },
+    'q_learning': {
+        Engine: QLearningSim,
+        scenario: ['map', 'maze'],
+        // The agent re-trains to the saved episodes from the same seed, so the review shows the student's own policy.
+        restore: {alpha: 'alpha', gamma: 'gamma', epsilon: 'epsilon', seed: 'seed', episodes: 'episodes'},
     },
 };
 

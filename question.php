@@ -236,6 +236,26 @@ class qtype_aisim_question extends question_graded_automatically {
                 }
                 break;
 
+            case 'q_learning':
+                // Full marks: the learned policy reaches the goal within the step limit, after at most the allowed episodes.
+                $reached = !empty($metrics['reached']);
+                $steps = (int)($metrics['steps'] ?? 0);
+                $episodes = (int)($params['episodes'] ?? 0);
+                $maxsteps = (int)$this->targetparam1;
+                $maxepisodes = (int)$this->targetparam2;
+
+                $stepsok = $reached && ($maxsteps <= 0 || $steps <= $maxsteps);
+                $episodesok = ($maxepisodes <= 0 || $episodes <= $maxepisodes);
+
+                if ($stepsok && $episodesok) {
+                    $fraction = 1.0;
+                } else if ($reached) {
+                    $fraction = 0.5;
+                } else {
+                    $fraction = 0.0;
+                }
+                break;
+
             case 'kmeans':
                 $wcss = (float)($metrics['wcss'] ?? 999999.0);
                 $k = (int)($params['k'] ?? 0);
@@ -327,6 +347,14 @@ class qtype_aisim_question extends question_graded_automatically {
                 $match = isset($m['match']) ? round($m['match'] * 100) . '%' : '?';
                 return "Kernel: [{$kernel}] / {$divisor}{$abs}, Match: {$match}";
 
+            case 'q_learning':
+                $episodes = $p['episodes'] ?? '?';
+                $path = !empty($m['reached']) ? ($m['steps'] ?? '?') . ' steps' : 'goal not reached';
+                $alpha = $p['alpha'] ?? '?';
+                $gamma = $p['gamma'] ?? '?';
+                $epsilon = $p['epsilon'] ?? '?';
+                return "α = {$alpha}, γ = {$gamma}, ε = {$epsilon}, Episodes: {$episodes}, Path: {$path}";
+
             default:
                 return json_encode($m);
         }
@@ -371,6 +399,12 @@ class qtype_aisim_question extends question_graded_automatically {
             case 'convolution':
                 $match = round($this->targetparam1 * 100);
                 return get_string('rightsummary_conv', 'qtype_aisim', (object)['match' => $match]);
+
+            case 'q_learning':
+                $steps = (int)$this->targetparam1;
+                $episodes = (int)$this->targetparam2;
+                $key = $episodes > 0 ? 'rightsummary_ql' : 'rightsummary_ql_any';
+                return get_string($key, 'qtype_aisim', (object)['steps' => $steps, 'episodes' => $episodes]);
 
             default:
                 return '';
