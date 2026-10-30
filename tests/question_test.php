@@ -33,7 +33,6 @@ require_once($CFG->dirroot . '/question/engine/tests/helpers.php');
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  * @covers     \qtype_aisim_question
  */
-#[\PHPUnit\Framework\Attributes\CoversClass(\qtype_aisim_question::class)]
 final class question_test extends \advanced_testcase {
     /**
      * A question of the given simulation type with the given targets.
@@ -121,7 +120,6 @@ final class question_test extends \advanced_testcase {
      * @param array $metrics
      * @param float $expected
      */
-    #[\PHPUnit\Framework\Attributes\DataProvider('grading_provider')]
     public function test_grade_response(
         string $simtype,
         float $target1,

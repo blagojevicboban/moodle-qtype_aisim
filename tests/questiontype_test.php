@@ -33,7 +33,6 @@ require_once($CFG->dirroot . '/question/format/xml/format.php');
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  * @covers     \qtype_aisim
  */
-#[\PHPUnit\Framework\Attributes\CoversClass(\qtype_aisim::class)]
 final class questiontype_test extends \advanced_testcase {
     /**
      * Create the neural network test question through the editing-form path.
