@@ -30,6 +30,8 @@ import {NeuralNetworkSim} from 'filter_aisim/sims/neural_network';
 import {ConvolutionSim} from 'filter_aisim/sims/convolution';
 import {QLearningSim} from 'filter_aisim/sims/q_learning';
 import {DataBiasSim} from 'filter_aisim/sims/data_bias';
+import {load as loadStrings} from 'filter_aisim/strings';
+import Notification from 'core/notification';
 
 /**
  * Per simulation type: the engine, the option that receives the question's scenario (and its default),
@@ -122,10 +124,7 @@ export const init = (containerId, inputId, config = {}) => {
 
     const simType = config.simtype || 'confusion_matrix';
     const readonly = !!config.readonly;
-    const lang = config.lang || (document.documentElement && document.documentElement.lang) || 'en';
-
     const simOptions = {
-        lang: lang,
         readonly: readonly,
         onChange: readonly ? null : onChange
     };
@@ -155,6 +154,8 @@ export const init = (containerId, inputId, config = {}) => {
         }
     });
 
-    new sim.Engine(container, simOptions);
+    loadStrings(sim.Engine.STRINGS)
+        .then((strings) => new sim.Engine(container, {...simOptions, strings}))
+        .catch(Notification.exception);
 };
 

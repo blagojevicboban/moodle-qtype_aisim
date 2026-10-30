@@ -25,14 +25,14 @@
 defined('MOODLE_INTERNAL') || die();
 
 $plugin->component = 'qtype_aisim';
-$plugin->version = 2026103006;
+$plugin->version = 2026103007;
 $plugin->requires = 2024100700; // Moodle 4.5 LTS.
 $plugin->supported = [405, 503];
 $plugin->maturity = MATURITY_BETA;
-$plugin->release = '0.9.1';
+$plugin->release = '0.10.0';
 $plugin->source = 'https://github.com/blagojevicboban/moodle-qtype_aisim';
 $plugin->tracker = 'https://github.com/blagojevicboban/moodle-qtype_aisim/issues';
 $plugin->documentation = 'https://github.com/blagojevicboban/moodle-qtype_aisim/blob/master/docs/PRIRUCNIK_ZA_NASTAVNIKE.md';
 $plugin->dependencies = [
-    'filter_aisim' => 2026103004,
+    'filter_aisim' => 2026103005,
 ];

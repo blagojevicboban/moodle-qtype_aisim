@@ -109,7 +109,6 @@ class qtype_aisim_renderer extends qtype_renderer {
             'tolerance' => (float)$question->targettolerance,
             'simconfig' => $question->simconfig,
             'readonly' => (bool)$options->readonly,
-            'lang' => current_language(),
         ];
 
         $this->page->requires->js_call_amd('qtype_aisim/attempt', 'init', [
