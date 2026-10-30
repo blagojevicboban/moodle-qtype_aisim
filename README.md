@@ -9,7 +9,7 @@
 
 Developed as part of the Erasmus+ **AI for VET** project (*AI for Vocational Education and Training* — [aiforvet.eu](https://aiforvet.eu/)).
 
-> Status: **v0.5.0 (Alpha)**.
+> Status: **v0.5.2 (Alpha)**.
 
 ---
 
