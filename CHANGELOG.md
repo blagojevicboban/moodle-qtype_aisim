@@ -5,6 +5,13 @@ All notable changes to the **AI Simulation Question Type (`qtype_aisim`)** will 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.5.1] - 2026-10-30
+
+### Fixed
+- Adding or saving a question failed with "mysqli::real_escape_string(): Argument #1 ($string) must be of type string, array given": combined feedback is now saved with `save_combined_feedback_helper()`.
+- Hints from the "Multiple tries" section are now saved.
+- Moodle XML import of the demo bank (`demo/questions_aiforvet.xml`) failed; import and export now use the standard combined feedback and hint format, and still read the older plain-text feedback.
+
 ## [0.5.0] - 2026-10-28
 
 ### Added
