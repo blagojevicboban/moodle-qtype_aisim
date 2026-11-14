@@ -1,22 +1,53 @@
-<div class="qtype-aisim-description">
-  <h2>AI Simulation Question Type (qtype_aisim) for Moodle</h2>
-  <p><em>Interactive assessment plugin enabling educators to test and auto-grade vocational students on applied AI and machine learning tasks directly inside Moodle Quizzes.</em></p>
+<div>
+  <p><strong>AI Simulation question type</strong></p>
+  <p><em>Quiz questions in which students solve a task inside an interactive machine learning simulation, graded automatically.</em></p>
+  <div>
+    <a href="https://github.com/blagojevicboban/moodle-qtype_aisim/actions/workflows/ci.yml" target="_blank" rel="noreferrer noopener"><img src="https://github.com/blagojevicboban/moodle-qtype_aisim/actions/workflows/ci.yml/badge.svg" alt="Moodle Plugin CI"></a>
+    <a href="https://moodle.org" target="_blank" rel="noreferrer noopener"><img src="https://img.shields.io/badge/Moodle-4.5%20to%205.3-orange.svg" alt="Moodle 4.5 to 5.3"></a>
+    <a href="https://github.com/blagojevicboban/moodle-qtype_aisim" target="_blank" rel="noreferrer noopener"><img src="https://img.shields.io/badge/License-GPL%20v3-blue.svg" alt="License GPL v3"></a>
+  </div>
 
-  <h3>Key Features</h3>
+  <p><strong>Live demo:</strong> try the plugins on <a href="https://aisim.tsp.edu.rs" target="_blank" rel="noreferrer noopener">aisim.tsp.edu.rs</a>. Log in as a guest, or use the demo accounts <strong>teacher</strong> and <strong>student</strong> (to take the quizzes), password <strong>Demo-2026</strong>. Everything is reset every night.</p>
+
+  <hr>
+  <p><strong>What's new in 0.10.0</strong></p>
   <ul>
-    <li><strong>Interactive Hands-On Questions:</strong> Students manipulate interactive simulations (Gradient Descent, Confusion Matrices, Regression, k-NN/Trees, K-Means, Neural Networks, Convolution, Q-learning, Data Bias) to satisfy engineering criteria.</li>
-    <li><strong>Instant Automated Grading:</strong> Server validates student parameters against target metrics (with configurable tolerances) and awards full or partial marks.</li>
-    <li><strong>Immediate Formative Feedback:</strong> Contextual hints for full, partial, and incorrect attempts encourage inquiry-based learning and self-correction.</li>
-    <li><strong>Moodle XML Export & Import:</strong> Easily share, archive, and import question banks across different courses and institutions.</li>
-    <li><strong>Multilingual Support:</strong> Fully localized in English, Serbian Latin, and Serbian Cyrillic.</li>
-    <li><strong>GDPR Compliant:</strong> Implements Moodle's Null Privacy Provider (stores no personal private data).</li>
+    <li><strong>Language strings:</strong> the simulations take their texts from the language files of filter_aisim, so they follow the user's language.</li>
+    <li><strong>Teacher guide 1.1:</strong> in English, Serbian, Slovak and Portuguese.</li>
   </ul>
 
-  <h3>Compatibility</h3>
+  <hr>
+  <p><strong>Features</strong></p>
   <ul>
-    <li>Compatible with Moodle 4.5 LTS, 5.0, 5.1, 5.2, and 5.3+.</li>
-    <li>PHP 8.2 and PHP 8.3.</li>
-    <li>MariaDB and PostgreSQL.</li>
-    <li>Requires <code>filter_aisim</code>.</li>
+    <li><strong>A task in a simulation:</strong> the teacher picks one of the nine simulations, the scenario and the target, for example a recall of at least 0.80 with a precision of at least 0.70, or a test accuracy with at most four hidden neurons.</li>
+    <li><strong>Automatic grading:</strong> Moodle grades the values the student reached, with a tolerance the teacher sets and half marks for a partial solution.</li>
+    <li><strong>Feedback:</strong> separate feedback for correct, partially correct and incorrect answers.</li>
+    <li><strong>Review:</strong> the simulation opens in the state the student left it, with the controls locked.</li>
+    <li><strong>Ready-made questions:</strong> 27 questions, three for each simulation, in a Moodle XML file in the repository.</li>
+    <li><strong>Moodle standards:</strong> backup and restore, Moodle XML import and export, PHPUnit tests.</li>
+    <li><strong>Translatable:</strong> all texts are language strings and can be translated in AMOS.</li>
   </ul>
+
+  <hr>
+  <p><strong>The AI simulation plugins</strong></p>
+  <ul>
+    <li><strong><a href="https://marketplace.moodle.com/plugins/filter_aisim" target="_blank" rel="noreferrer noopener">AI Simulations Viewer</a></strong> (filter_aisim): runs the simulations; required.</li>
+    <li><strong><a href="https://marketplace.moodle.com/plugins/tiny_aisim" target="_blank" rel="noreferrer noopener">AI Simulation button for TinyMCE</a></strong> (tiny_aisim): inserts the simulations in any text.</li>
+    <li><strong><a href="https://marketplace.moodle.com/plugins/qtype_aisim" target="_blank" rel="noreferrer noopener">AI Simulation question type</a></strong> (this plugin): quiz questions graded automatically.</li>
+  </ul>
+
+  <hr>
+  <p><strong>Requirements</strong></p>
+  <ul>
+    <li><strong>Moodle:</strong> 4.5 LTS to 5.3.</li>
+    <li><strong>filter_aisim:</strong> 0.10.0 or newer.</li>
+  </ul>
+
+  <hr>
+  <p><strong>Privacy</strong></p>
+  <p>The plugin stores no personal data beyond the quiz attempts that Moodle keeps, and sends nothing to external services; it implements the Moodle Privacy API.</p>
+
+  <hr>
+  <p><strong>About</strong></p>
+  <p>Developed in the Erasmus+ project AI for VET for vocational schools. The teacher guide, the question bank, the source code, issues and the changelog are in the <a href="https://github.com/blagojevicboban/moodle-qtype_aisim" target="_blank" rel="noreferrer noopener">GitHub repository</a>.</p>
 </div>
