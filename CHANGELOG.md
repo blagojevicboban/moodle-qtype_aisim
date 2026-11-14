@@ -5,6 +5,15 @@ All notable changes to the **AI Simulation Question Type (`qtype_aisim`)** will 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.11.0] - 2026-11-14
+
+### Added
+- Logistic Regression simulation type (requires filter_aisim 0.11.0). Target Metric 1 is the minimum accuracy,
+  Target Metric 2 the minimum recall and the Tolerance field the minimum precision (0 = no limit); meeting only the
+  accuracy gives half marks. The review shows the student's own weights and threshold.
+- Three logistic regression questions in the demo bank (now 30).
+- Teacher guide 1.2 (`docs/`).
+
 ## [0.10.0] - 2026-10-31
 
 ### Changed

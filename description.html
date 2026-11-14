@@ -10,20 +10,21 @@
   <p><strong>Live demo:</strong> try the plugins on <a href="https://aisim.tsp.edu.rs" target="_blank" rel="noreferrer noopener">aisim.tsp.edu.rs</a>. Log in as a guest, or use the demo accounts <strong>teacher</strong> and <strong>student</strong> (to take the quizzes), password <strong>Demo-2026</strong>. Everything is reset every night.</p>
 
   <hr>
-  <p><strong>What's new in 0.10.0</strong></p>
+  <p><strong>What's new in 0.11.0</strong></p>
   <ul>
-    <li><strong>Language strings:</strong> the simulations take their texts from the language files of filter_aisim, so they follow the user's language.</li>
-    <li><strong>Teacher guide 1.1:</strong> in English, Serbian, Slovak and Portuguese.</li>
+    <li><strong>Logistic regression:</strong> a new simulation type, graded on accuracy with an optional minimum recall and precision, for example catching every machine failure by choosing the threshold.</li>
+    <li><strong>Ready-made questions:</strong> three new logistic regression questions, 30 in total.</li>
+    <li><strong>Teacher guide 1.2:</strong> in English, Serbian, Slovak and Portuguese.</li>
   </ul>
 
   <hr>
   <p><strong>Features</strong></p>
   <ul>
-    <li><strong>A task in a simulation:</strong> the teacher picks one of the nine simulations, the scenario and the target, for example a recall of at least 0.80 with a precision of at least 0.70, or a test accuracy with at most four hidden neurons.</li>
+    <li><strong>A task in a simulation:</strong> the teacher picks one of the ten simulations, the scenario and the target, for example a recall of at least 0.80 with a precision of at least 0.70, or a test accuracy with at most four hidden neurons.</li>
     <li><strong>Automatic grading:</strong> Moodle grades the values the student reached, with a tolerance the teacher sets and half marks for a partial solution.</li>
     <li><strong>Feedback:</strong> separate feedback for correct, partially correct and incorrect answers.</li>
     <li><strong>Review:</strong> the simulation opens in the state the student left it, with the controls locked.</li>
-    <li><strong>Ready-made questions:</strong> 27 questions, three for each simulation, in a Moodle XML file in the repository.</li>
+    <li><strong>Ready-made questions:</strong> 30 questions, three for each simulation, in a Moodle XML file in the repository.</li>
     <li><strong>Moodle standards:</strong> backup and restore, Moodle XML import and export, PHPUnit tests.</li>
     <li><strong>Translatable:</strong> all texts are language strings and can be translated in AMOS.</li>
   </ul>

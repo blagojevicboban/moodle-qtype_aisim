@@ -105,6 +105,14 @@ final class question_test extends \advanced_testcase {
             'data bias, fair and small' => ['data_bias', 0.88, 120, 0, ['n' => 120], ['worst' => 0.91], 1.0],
             'data bias, sample too big' => ['data_bias', 0.88, 120, 0, ['n' => 400], ['worst' => 0.91], 0.5],
             'data bias, biased sample' => ['data_bias', 0.88, 120, 0, ['n' => 120], ['worst' => 0.76], 0.0],
+            'logistic, accuracy only' => ['logistic', 0.95, 0, 0, [], ['accuracy' => 0.98, 'recall' => 0.96, 'precision' => 1], 1.0],
+            'logistic, all targets' => ['logistic', 0.9, 1, 0.85, [], ['accuracy' => 0.94, 'recall' => 1, 'precision' => 0.889],
+                1.0],
+            'logistic, recall missed' => ['logistic', 0.9, 1, 0.85, [], ['accuracy' => 0.98, 'recall' => 0.96, 'precision' => 1],
+                0.5],
+            'logistic, precision missed' => ['logistic', 0.8, 0.6, 0.88, [], ['accuracy' => 0.8, 'recall' => 0.81,
+                'precision' => 0.808], 0.5],
+            'logistic, untrained' => ['logistic', 0.95, 0, 0, [], ['accuracy' => 0.48, 'recall' => 1, 'precision' => 0.48], 0.0],
         ];
     }
 
@@ -188,6 +196,14 @@ final class question_test extends \advanced_testcase {
             ['testAcc' => 0.9, 'accA' => 0.943, 'accB' => 0.91]
         ));
         $this->assertStringContainsString('Factory A: 94%, Factory B: 91%', $summary);
+
+        $q = $this->make_question('logistic', 0.9, 1, 0.85);
+        $summary = $q->summarise_response($this->response(
+            'logistic',
+            ['w1' => 6.6, 'w2' => 7, 'b' => -1.6, 'threshold' => 0.2],
+            ['accuracy' => 0.94, 'recall' => 1, 'precision' => 0.889]
+        ));
+        $this->assertStringContainsString('θ = 0.20, Accuracy: 94%, Precision: 89%, Recall: 100%', $summary);
     }
 
     /**
@@ -210,6 +226,11 @@ final class question_test extends \advanced_testcase {
         $this->assertSame(
             'Real-world accuracy of both factories ≥ 88% with at most 120 samples',
             $this->make_question('data_bias', 0.88, 120)->get_right_answer_summary()
+        );
+        $this->assertSame('Accuracy ≥ 95%', $this->make_question('logistic', 0.95, 0)->get_right_answer_summary());
+        $this->assertSame(
+            'Accuracy ≥ 90%, recall ≥ 100%, precision ≥ 85%',
+            $this->make_question('logistic', 0.9, 1, 0.85)->get_right_answer_summary()
         );
     }
 }

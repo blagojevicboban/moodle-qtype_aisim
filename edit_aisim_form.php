@@ -53,6 +53,7 @@ class qtype_aisim_edit_form extends question_edit_form {
             'convolution' => get_string('sim_conv', 'qtype_aisim'),
             'q_learning' => get_string('sim_ql', 'qtype_aisim'),
             'data_bias' => get_string('sim_db', 'qtype_aisim'),
+            'logistic' => get_string('sim_log', 'qtype_aisim'),
         ];
         $mform->addElement('select', 'simtype', get_string('simtype', 'qtype_aisim'), $simtypes);
         $mform->setDefault('simtype', 'confusion_matrix');

@@ -295,6 +295,22 @@ class qtype_aisim_question extends question_graded_automatically {
                 }
                 break;
 
+            case 'logistic':
+                // Accuracy is the main target; recall (targetparam2) and precision (tolerance) are optional limits.
+                $accok = ((float)($metrics['accuracy'] ?? 0.0) >= (float)$this->targetparam1);
+                $recok = ((float)$this->targetparam2 <= 0 || (float)($metrics['recall'] ?? 0.0) >= (float)$this->targetparam2);
+                $precok = ((float)$this->targettolerance <= 0
+                    || (float)($metrics['precision'] ?? 0.0) >= (float)$this->targettolerance);
+
+                if ($accok && $recok && $precok) {
+                    $fraction = 1.0;
+                } else if ($accok) {
+                    $fraction = 0.5;
+                } else {
+                    $fraction = 0.0;
+                }
+                break;
+
             case 'kmeans':
                 $wcss = (float)($metrics['wcss'] ?? 999999.0);
                 $k = (int)($params['k'] ?? 0);
@@ -394,6 +410,13 @@ class qtype_aisim_question extends question_graded_automatically {
                 $epsilon = $p['epsilon'] ?? '?';
                 return "α = {$alpha}, γ = {$gamma}, ε = {$epsilon}, Episodes: {$episodes}, Path: {$path}";
 
+            case 'logistic':
+                $pct = fn($key) => isset($m[$key]) ? round($m[$key] * 100) . '%' : '?';
+                $num = fn($key) => isset($p[$key]) ? sprintf('%.2f', $p[$key]) : '?';
+                [$w1, $w2, $b, $th] = [$num('w1'), $num('w2'), $num('b'), $num('threshold')];
+                [$acc, $prec, $rec] = [$pct('accuracy'), $pct('precision'), $pct('recall')];
+                return "w1 = {$w1}, w2 = {$w2}, b = {$b}, θ = {$th}, Accuracy: {$acc}, Precision: {$prec}, Recall: {$rec}";
+
             case 'data_bias':
                 $pct = fn($key) => isset($m[$key]) ? round($m[$key] * 100) . '%' : '?';
                 $n = $p['n'] ?? '?';
@@ -452,6 +475,16 @@ class qtype_aisim_question extends question_graded_automatically {
                 $episodes = (int)$this->targetparam2;
                 $key = $episodes > 0 ? 'rightsummary_ql' : 'rightsummary_ql_any';
                 return get_string($key, 'qtype_aisim', (object)['steps' => $steps, 'episodes' => $episodes]);
+
+            case 'logistic':
+                $parts = [get_string('rightsummary_log', 'qtype_aisim', round($this->targetparam1 * 100))];
+                if ($this->targetparam2 > 0) {
+                    $parts[] = get_string('rightsummary_log_recall', 'qtype_aisim', round($this->targetparam2 * 100));
+                }
+                if ($this->targettolerance > 0) {
+                    $parts[] = get_string('rightsummary_log_precision', 'qtype_aisim', round($this->targettolerance * 100));
+                }
+                return implode(', ', $parts);
 
             case 'data_bias':
                 $acc = round($this->targetparam1 * 100);

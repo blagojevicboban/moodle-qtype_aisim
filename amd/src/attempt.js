@@ -30,6 +30,7 @@ import {NeuralNetworkSim} from 'filter_aisim/sims/neural_network';
 import {ConvolutionSim} from 'filter_aisim/sims/convolution';
 import {QLearningSim} from 'filter_aisim/sims/q_learning';
 import {DataBiasSim} from 'filter_aisim/sims/data_bias';
+import {LogisticSim} from 'filter_aisim/sims/logistic';
 import {load as loadStrings} from 'filter_aisim/strings';
 import Notification from 'core/notification';
 
@@ -86,6 +87,12 @@ const SIMS = {
         scenario: ['population', 'shifted'],
         // The same seed and settings draw the same sample, so the review shows the student's own model.
         restore: {n: 'n', share: 'share', test: 'test', k: 'k', seed: 'seed'},
+    },
+    'logistic': {
+        Engine: LogisticSim,
+        scenario: ['dataset', 'machine'],
+        // The saved weights and threshold give the student's own model again.
+        restore: {w1: 'w1', w2: 'w2', b: 'b', threshold: 'threshold', lr: 'lr', epochs: 'epochs'},
     },
 };
 
