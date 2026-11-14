@@ -326,6 +326,20 @@ class qtype_aisim_question extends question_graded_automatically {
                 }
                 break;
 
+            case 'data_prep':
+                // Accuracy on the clean test data, with an optional minimum recall of class 1.
+                $accok = ((float)($metrics['accuracy'] ?? 0.0) >= (float)$this->targetparam1);
+                $recok = ((float)$this->targetparam2 <= 0 || (float)($metrics['recall'] ?? 0.0) >= (float)$this->targetparam2);
+
+                if ($accok && $recok) {
+                    $fraction = 1.0;
+                } else if ($accok) {
+                    $fraction = 0.5;
+                } else {
+                    $fraction = 0.0;
+                }
+                break;
+
             case 'kmeans':
                 $wcss = (float)($metrics['wcss'] ?? 999999.0);
                 $k = (int)($params['k'] ?? 0);
@@ -440,6 +454,12 @@ class qtype_aisim_question extends question_graded_automatically {
                 $test = isset($m['testMse']) ? sprintf('%.3f', $m['testMse']) : '–';
                 return "k = {$k}, d = {$d}, CV MSE: {$num('cvMse')} ± {$num('cvSd')}, Best d by CV: {$best}, Test MSE: {$test}";
 
+            case 'data_prep':
+                $pct = fn($key) => isset($m[$key]) ? round($m[$key] * 100) . '%' : '?';
+                $steps = implode(', ', array_map(fn($k) => $p[$k] ?? '?', ['missing', 'outliers', 'scaling']));
+                $k = $p['k'] ?? '?';
+                return "Pipeline: {$steps}, k = {$k}, Accuracy: {$pct('accuracy')}, Recall: {$pct('recall')}";
+
             case 'data_bias':
                 $pct = fn($key) => isset($m[$key]) ? round($m[$key] * 100) . '%' : '?';
                 $n = $p['n'] ?? '?';
@@ -506,6 +526,13 @@ class qtype_aisim_question extends question_graded_automatically {
                 }
                 if ($this->targettolerance > 0) {
                     $parts[] = get_string('rightsummary_log_precision', 'qtype_aisim', round($this->targettolerance * 100));
+                }
+                return implode(', ', $parts);
+
+            case 'data_prep':
+                $parts = [get_string('rightsummary_log', 'qtype_aisim', round($this->targetparam1 * 100))];
+                if ($this->targetparam2 > 0) {
+                    $parts[] = get_string('rightsummary_log_recall', 'qtype_aisim', round($this->targetparam2 * 100));
                 }
                 return implode(', ', $parts);
 

@@ -17,7 +17,7 @@ Developed as part of the Erasmus+ **AI for VET** project (*AI for Vocational Edu
 
 | Feature | Description |
 |---|---|
-| 🎯 **11 Interactive AI Sim Engines** | Confusion Matrix & Threshold, Gradient Descent Optimization, Polynomial Regression & Overfitting, Decision Boundaries (k-NN / Decision Tree), K-Means Clustering, Perceptron & Neural Network, Convolution & Image Filters, Reinforcement Learning (Q-learning), Data Split & Bias, Logistic Regression, and Cross-Validation. |
+| 🎯 **12 Interactive AI Sim Engines** | Confusion Matrix & Threshold, Gradient Descent Optimization, Polynomial Regression & Overfitting, Decision Boundaries (k-NN / Decision Tree), K-Means Clustering, Perceptron & Neural Network, Convolution & Image Filters, Reinforcement Learning (Q-learning), Data Split & Bias, Logistic Regression, Cross-Validation, and Data Preparation (EDA). |
 | ⚡ **Automatic Real-Time Grading** | Evaluates student model parameters and resulting metrics (`recall`, `precision`, `loss`, `val_mse`, `accuracy`, `wcss`) against question targets with partial credit support. |
 | 🧑‍🏫 **Interactive Review & Badges** | In quiz review mode, students and teachers see the submitted simulation state locked, accompanied by a status badge (100% Achieved, 50% Partial, 0% Not Met). |
 | 💾 **Quiz Autosave Integration** | Automatically writes serialized JSON model state to hidden form input and triggers Moodle quiz autosave on changes. |
@@ -53,7 +53,7 @@ php admin/cli/upgrade.php
 - 🇸🇰 **[Pedagogicko-technická príručka pre učiteľov](docs/PRIRUCKA_PRE_UCITELOV.md)**
 - 🇵🇹 **[Guia pedagógico e técnico para professores](docs/GUIA_DO_PROFESSOR.md)**
 - 🌐 Web version in all four languages: [sim.aiforvet.eu/guide.html](https://sim.aiforvet.eu/guide.html)
-- 📝 **[33-Question Pre-packaged Bank (Moodle XML)](demo/questions_aiforvet.xml)**
+- 📝 **[36-Question Pre-packaged Bank (Moodle XML)](demo/questions_aiforvet.xml)**
 
 ---
 

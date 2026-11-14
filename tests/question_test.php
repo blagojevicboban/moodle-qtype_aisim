@@ -116,6 +116,9 @@ final class question_test extends \advanced_testcase {
             'cross-validation, enough folds' => ['cross_validation', 0.1, 5, 0, ['k' => 5, 'degree' => 4], ['cvMse' => 0.098], 1.0],
             'cross-validation, too few folds' => ['cross_validation', 0.1, 5, 0, ['k' => 2, 'degree' => 4], ['cvMse' => 0.09], 0.5],
             'cross-validation, overfitted' => ['cross_validation', 0.1, 5, 0, ['k' => 5, 'degree' => 8], ['cvMse' => 0.36], 0.0],
+            'data preparation, both' => ['data_prep', 0.9, 0.85, 0, [], ['accuracy' => 0.92, 'recall' => 0.89], 1.0],
+            'data preparation, recall missed' => ['data_prep', 0.9, 0.85, 0, [], ['accuracy' => 0.91, 'recall' => 0.82], 0.5],
+            'data preparation, not scaled' => ['data_prep', 0.9, 0.85, 0, [], ['accuracy' => 0.63, 'recall' => 0.51], 0.0],
             'logistic, untrained' => ['logistic', 0.95, 0, 0, [], ['accuracy' => 0.48, 'recall' => 1, 'precision' => 0.48], 0.0],
         ];
     }
@@ -216,6 +219,14 @@ final class question_test extends \advanced_testcase {
             ['cvMse' => 0.0983, 'cvSd' => 0.0451, 'bestDegree' => 4, 'testMse' => 0.152]
         ));
         $this->assertStringContainsString('k = 5, d = 4, CV MSE: 0.098 ± 0.045, Best d by CV: 4, Test MSE: 0.152', $summary);
+
+        $q = $this->make_question('data_prep', 0.9, 0.85);
+        $summary = $q->summarise_response($this->response(
+            'data_prep',
+            ['missing' => 'median', 'outliers' => 'remove', 'scaling' => 'zscore', 'k' => 5],
+            ['accuracy' => 0.922, 'recall' => 0.889, 'rows' => 117]
+        ));
+        $this->assertStringContainsString('Pipeline: median, remove, zscore, k = 5, Accuracy: 92%, Recall: 89%', $summary);
     }
 
     /**
@@ -240,6 +251,10 @@ final class question_test extends \advanced_testcase {
             $this->make_question('data_bias', 0.88, 120)->get_right_answer_summary()
         );
         $this->assertSame('Accuracy ≥ 95%', $this->make_question('logistic', 0.95, 0)->get_right_answer_summary());
+        $this->assertSame(
+            'Accuracy ≥ 90%, recall ≥ 85%',
+            $this->make_question('data_prep', 0.9, 0.85)->get_right_answer_summary()
+        );
         $this->assertSame(
             'Cross-validation MSE ≤ 0.100 with at least 5 folds',
             $this->make_question('cross_validation', 0.1, 5)->get_right_answer_summary()

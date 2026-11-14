@@ -5,6 +5,14 @@ All notable changes to the **AI Simulation Question Type (`qtype_aisim`)** will 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.13.0] - 2026-11-14
+
+### Added
+- Data Preparation (EDA) simulation type (requires filter_aisim 0.13.0). Target Metric 1 is the minimum accuracy on
+  the test data, Target Metric 2 the minimum recall (0 = no limit); meeting only the accuracy gives half marks.
+- Three data preparation questions in the demo bank (now 36).
+- Teacher guide 1.4 (`docs/`).
+
 ## [0.12.0] - 2026-11-14
 
 ### Added

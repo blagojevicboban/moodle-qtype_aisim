@@ -3,10 +3,10 @@
 <!-- question: 0  -->
   <question type="category">
     <category>
-      <text>$course$/top/AI za VET - Baza simulacionih zadataka (33 pitanja)</text>
+      <text>$course$/top/AI za VET - Baza simulacionih zadataka (36 pitanja)</text>
     </category>
     <info format="html">
-      <text>Kompletna baza sa 33 interaktivnih zadataka sa automatskim ocenjivanjem za projekat AI for VET (Erasmus+), razvrstanih u 3 nivoa težine po svim simulacionim modulima.</text>
+      <text>Kompletna baza sa 36 interaktivnih zadataka sa automatskim ocenjivanjem za projekat AI for VET (Erasmus+), razvrstanih u 3 nivoa težine po svim simulacionim modulima.</text>
     </info>
     <idnumber></idnumber>
   </question>
@@ -1180,6 +1180,109 @@
     <correctfeedbackformat>1</correctfeedbackformat>
     <partiallycorrectfeedback format="html">
       <text><![CDATA[<p>Delimično tačno. Greška je dovoljno mala, ali je procenjena sa premalo delova (k).</p>]]></text>
+    </partiallycorrectfeedback>
+    <partiallycorrectfeedbackformat>1</partiallycorrectfeedbackformat>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Netačno. Pokušajte ponovo da promenite parametre.</p>]]></text>
+    </incorrectfeedback>
+    <incorrectfeedbackformat>1</incorrectfeedbackformat>
+    <shownumcorrect>0</shownumcorrect>
+  </question>
+
+  <question type="aisim">
+    <name>
+      <text>DP-01: Skaliranje promenljivih (Osnovni nivo)</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Podaci o mašinama imaju brzinu (800–3000 o/min) i vibracije (0–6 mm/s). Pogledajte statistiku i prikaz „Šta vidi k-NN model”, pa napravite tok pripreme tako da <strong>tačnost na test podacima bude &ge; 85%</strong>.</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text><![CDATA[<p>k-NN meri obična rastojanja, pa promenljiva sa velikim brojevima (brzina) odlučuje skoro sama. Skaliranjem (min-max ili z-score) obe promenljive dobijaju istu težinu.</p>]]></text>
+    </generalfeedback>
+    <defaultgrade>1</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <simtype>data_prep</simtype>
+    <scenario>machine</scenario>
+    <targetparam1>0.8500</targetparam1>
+    <targetparam2>0.0000</targetparam2>
+    <targettolerance>0.0000</targettolerance>
+    <simconfig><![CDATA[{}]]></simconfig>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Odlično! Simulacioni model je konvergirao u optimalnu zonu.</p>]]></text>
+    </correctfeedback>
+    <correctfeedbackformat>1</correctfeedbackformat>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Delimično tačno. Tačnost je dovoljna, ali model još propušta previše slučajeva klase 1 (opoziv).</p>]]></text>
+    </partiallycorrectfeedback>
+    <partiallycorrectfeedbackformat>1</partiallycorrectfeedbackformat>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Netačno. Pokušajte ponovo da promenite parametre.</p>]]></text>
+    </incorrectfeedback>
+    <incorrectfeedbackformat>1</incorrectfeedbackformat>
+    <shownumcorrect>0</shownumcorrect>
+  </question>
+  <question type="aisim">
+    <name>
+      <text>DP-02: Greška u jedinicama (Srednji nivo)</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Podaci su skalirani min-max metodom, ali rezultat je slabiji nego što bi mogao. Pogledajte maksimum brzine u tabeli i histogram. Pronađite problem i dostignite <strong>tačnost &ge; 92%</strong> uz <strong>min-max skaliranje</strong>.</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text><![CDATA[<p>Nekoliko pogrešno upisanih vrednosti (greška u jedinicama) razvlači min-max skalu, pa sve normalne vrednosti završe u uskom pojasu. Autlajere treba pronaći i ukloniti pre skaliranja.</p>]]></text>
+    </generalfeedback>
+    <defaultgrade>2</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <simtype>data_prep</simtype>
+    <scenario>machine</scenario>
+    <targetparam1>0.9200</targetparam1>
+    <targetparam2>0.0000</targetparam2>
+    <targettolerance>0.0000</targettolerance>
+    <simconfig><![CDATA[{"scaling":"minmax"}]]></simconfig>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Odlično! Simulacioni model je konvergirao u optimalnu zonu.</p>]]></text>
+    </correctfeedback>
+    <correctfeedbackformat>1</correctfeedbackformat>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Delimično tačno. Tačnost je dovoljna, ali model još propušta previše slučajeva klase 1 (opoziv).</p>]]></text>
+    </partiallycorrectfeedback>
+    <partiallycorrectfeedbackformat>1</partiallycorrectfeedbackformat>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Netačno. Pokušajte ponovo da promenite parametre.</p>]]></text>
+    </incorrectfeedback>
+    <incorrectfeedbackformat>1</incorrectfeedbackformat>
+    <shownumcorrect>0</shownumcorrect>
+  </question>
+  <question type="aisim">
+    <name>
+      <text>DP-03: Pacijenti bez izmišljenih merenja (Napredni nivo)</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Kod pacijenata nedostaju neka merenja markera u krvi, a starost je u godinama. Napravite tok pripreme u kome <strong>nedostajuće vrednosti nisu zamenjene nulom</strong>, sa <strong>tačnošću &ge; 90%</strong> i <strong>opozivom &ge; 85%</strong>. Zašto nula nije dobra zamena?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text><![CDATA[<p>Nula je merenje koje se nije desilo: menja minimum i prosek i stavlja pacijente tamo gde ne pripadaju. Prosek ili medijana iz podataka za trening su poštenija procena.</p>]]></text>
+    </generalfeedback>
+    <defaultgrade>2</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <simtype>data_prep</simtype>
+    <scenario>patients</scenario>
+    <targetparam1>0.9000</targetparam1>
+    <targetparam2>0.8500</targetparam2>
+    <targettolerance>0.0000</targettolerance>
+    <simconfig><![CDATA[{}]]></simconfig>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Odlično! Simulacioni model je konvergirao u optimalnu zonu.</p>]]></text>
+    </correctfeedback>
+    <correctfeedbackformat>1</correctfeedbackformat>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Delimično tačno. Tačnost je dovoljna, ali model još propušta previše slučajeva klase 1 (opoziv).</p>]]></text>
     </partiallycorrectfeedback>
     <partiallycorrectfeedbackformat>1</partiallycorrectfeedbackformat>
     <incorrectfeedback format="html">

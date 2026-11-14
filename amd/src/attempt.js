@@ -32,6 +32,7 @@ import {QLearningSim} from 'filter_aisim/sims/q_learning';
 import {DataBiasSim} from 'filter_aisim/sims/data_bias';
 import {LogisticSim} from 'filter_aisim/sims/logistic';
 import {CrossValidationSim} from 'filter_aisim/sims/cross_validation';
+import {DataPrepSim} from 'filter_aisim/sims/data_prep';
 import {load as loadStrings} from 'filter_aisim/strings';
 import Notification from 'core/notification';
 
@@ -100,6 +101,12 @@ const SIMS = {
         scenario: ['dataset', 'sine'],
         // The same seed gives the same folds, so the review shows the student's own validation.
         restore: {k: 'k', degree: 'degree', seed: 'seed', tested: 'tested'},
+    },
+    'data_prep': {
+        Engine: DataPrepSim,
+        scenario: ['dataset', 'machine'],
+        // The saved pipeline gives the student's own result again.
+        restore: {missing: 'missing', outliers: 'outliers', scaling: 'scaling', k: 'k'},
     },
 };
 
