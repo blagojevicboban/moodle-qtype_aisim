@@ -3,10 +3,10 @@
 <!-- question: 0  -->
   <question type="category">
     <category>
-      <text>$course$/top/AI za VET - Baza simulacionih zadataka (36 pitanja)</text>
+      <text>$course$/top/AI za VET - Baza simulacionih zadataka (39 pitanja)</text>
     </category>
     <info format="html">
-      <text>Kompletna baza sa 36 interaktivnih zadataka sa automatskim ocenjivanjem za projekat AI for VET (Erasmus+), razvrstanih u 3 nivoa težine po svim simulacionim modulima.</text>
+      <text>Kompletna baza sa 39 interaktivnih zadataka sa automatskim ocenjivanjem za projekat AI for VET (Erasmus+), razvrstanih u 3 nivoa težine po svim simulacionim modulima.</text>
     </info>
     <idnumber></idnumber>
   </question>
@@ -1283,6 +1283,109 @@
     <correctfeedbackformat>1</correctfeedbackformat>
     <partiallycorrectfeedback format="html">
       <text><![CDATA[<p>Delimično tačno. Tačnost je dovoljna, ali model još propušta previše slučajeva klase 1 (opoziv).</p>]]></text>
+    </partiallycorrectfeedback>
+    <partiallycorrectfeedbackformat>1</partiallycorrectfeedbackformat>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Netačno. Pokušajte ponovo da promenite parametre.</p>]]></text>
+    </incorrectfeedback>
+    <incorrectfeedbackformat>1</incorrectfeedbackformat>
+    <shownumcorrect>0</shownumcorrect>
+  </question>
+
+  <question type="aisim">
+    <name>
+      <text>RNN-01: Termometar sa šumom (Osnovni nivo)</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Senzor meri temperaturu sa šumom, a mreža treba da predvidi stvarnu temperaturu sledećeg sata. Podesite težine ili pritisnite <strong>Treniraj</strong> tako da <strong>greška (MSE) bude &le; 0.065</strong>. Koliku vrednost ima težina memorije w kada mreža radi dobro?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text><![CDATA[<p>Bez memorije (w ≈ 0) mreža vidi samo poslednje merenje sa šumom (MSE oko 0.072). Sa w između 0 i 1 stanje h je uprosečavanje poslednjih nekoliko sati, pa šum manje smeta (istrenirana mreža: w ≈ 0.36, MSE oko 0.059).</p>]]></text>
+    </generalfeedback>
+    <defaultgrade>1</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <simtype>rnn</simtype>
+    <scenario>temperature</scenario>
+    <targetparam1>0.0650</targetparam1>
+    <targetparam2>0.0000</targetparam2>
+    <targettolerance>0.0000</targettolerance>
+    <simconfig><![CDATA[{}]]></simconfig>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Odlično! Simulacioni model je konvergirao u optimalnu zonu.</p>]]></text>
+    </correctfeedback>
+    <correctfeedbackformat>1</correctfeedbackformat>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Delimično tačno. Greška je dovoljno mala, ali mreža ne pamti dovoljno daleko unazad – niz je prekratak ili w nije blizu 1.</p>]]></text>
+    </partiallycorrectfeedback>
+    <partiallycorrectfeedbackformat>1</partiallycorrectfeedbackformat>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Netačno. Pokušajte ponovo da promenite parametre.</p>]]></text>
+    </incorrectfeedback>
+    <incorrectfeedbackformat>1</incorrectfeedbackformat>
+    <shownumcorrect>0</shownumcorrect>
+  </question>
+  <question type="aisim">
+    <name>
+      <text>RNN-02: Zapamti prvu vrednost (Srednji nivo)</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Na početku niza od 10 koraka mreža dobija jednu vrednost, a zatim samo nule. Na kraju treba da vrati tu prvu vrednost. Podesite mrežu tako da <strong>greška bude &le; 0.02</strong> i da mreža <strong>pamti bar 10 prethodnih ulaza</strong>. Šta se dešava sa stubićima uticaja kada je w = 0.5?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text><![CDATA[<p>U svakom koraku stanje se množi sa w, pa za w = 0.5 posle 10 koraka ostane samo oko 0.2% prve vrednosti. Mreža pamti samo ako je w blizu 1; mala težina ulaza u drži tanh u pravom (linearnom) delu, a velika težina izlaza v vraća vrednost.</p>]]></text>
+    </generalfeedback>
+    <defaultgrade>2</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <simtype>rnn</simtype>
+    <scenario>memory</scenario>
+    <targetparam1>0.0200</targetparam1>
+    <targetparam2>10.0000</targetparam2>
+    <targettolerance>0.0000</targettolerance>
+    <simconfig><![CDATA[{"length":10}]]></simconfig>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Odlično! Simulacioni model je konvergirao u optimalnu zonu.</p>]]></text>
+    </correctfeedback>
+    <correctfeedbackformat>1</correctfeedbackformat>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Delimično tačno. Greška je dovoljno mala, ali mreža ne pamti dovoljno daleko unazad – niz je prekratak ili w nije blizu 1.</p>]]></text>
+    </partiallycorrectfeedback>
+    <partiallycorrectfeedbackformat>1</partiallycorrectfeedbackformat>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Netačno. Pokušajte ponovo da promenite parametre.</p>]]></text>
+    </incorrectfeedback>
+    <incorrectfeedbackformat>1</incorrectfeedbackformat>
+    <shownumcorrect>0</shownumcorrect>
+  </question>
+  <question type="aisim">
+    <name>
+      <text>RNN-03: Nestajući gradijent (Napredni nivo)</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Sada je niz dug 20 koraka. Pritisnite <strong>Treniraj</strong> nekoliko puta i pratite veličinu gradijenta. Zatim ručno podesite mrežu tako da <strong>greška bude &le; 0.01</strong> i da mreža <strong>pamti bar 20 prethodnih ulaza</strong>. Zašto treniranje ovde ne uspeva samo?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text><![CDATA[<p>Greška iz poslednjeg koraka putuje unazad kroz svih 20 koraka i svaki put se množi sa w·(1 − h²). Za w = 0.5 gradijent praktično nestane (problem nestajućeg gradijenta) i treniranje stoji. Rešenje ručno: w = 1, mali u (npr. 0.3) i veliki v (npr. 4). Mreže LSTM i GRU imaju kapije koje informaciju čuvaju i bez tako tačnog w.</p>]]></text>
+    </generalfeedback>
+    <defaultgrade>2</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <simtype>rnn</simtype>
+    <scenario>memory</scenario>
+    <targetparam1>0.0100</targetparam1>
+    <targetparam2>20.0000</targetparam2>
+    <targettolerance>0.0000</targettolerance>
+    <simconfig><![CDATA[{"length":20}]]></simconfig>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Odlično! Simulacioni model je konvergirao u optimalnu zonu.</p>]]></text>
+    </correctfeedback>
+    <correctfeedbackformat>1</correctfeedbackformat>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Delimično tačno. Greška je dovoljno mala, ali mreža ne pamti dovoljno daleko unazad – niz je prekratak ili w nije blizu 1.</p>]]></text>
     </partiallycorrectfeedback>
     <partiallycorrectfeedbackformat>1</partiallycorrectfeedbackformat>
     <incorrectfeedback format="html">

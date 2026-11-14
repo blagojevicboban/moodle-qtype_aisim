@@ -131,7 +131,7 @@ final class questiontype_test extends \advanced_testcase {
         $this->setAdminUser();
         [$ok] = $this->import_file($CFG->dirroot . '/question/type/aisim/demo/questions_aiforvet.xml');
         $this->assertTrue($ok);
-        $this->assertEquals(36, $DB->count_records('qtype_aisim_options'));
-        $this->assertCount(12, $DB->get_fieldset_sql('SELECT DISTINCT simtype FROM {qtype_aisim_options}'));
+        $this->assertEquals(39, $DB->count_records('qtype_aisim_options'));
+        $this->assertCount(13, $DB->get_fieldset_sql('SELECT DISTINCT simtype FROM {qtype_aisim_options}'));
     }
 }

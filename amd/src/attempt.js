@@ -33,6 +33,7 @@ import {DataBiasSim} from 'filter_aisim/sims/data_bias';
 import {LogisticSim} from 'filter_aisim/sims/logistic';
 import {CrossValidationSim} from 'filter_aisim/sims/cross_validation';
 import {DataPrepSim} from 'filter_aisim/sims/data_prep';
+import {RnnSim} from 'filter_aisim/sims/rnn';
 import {load as loadStrings} from 'filter_aisim/strings';
 import Notification from 'core/notification';
 
@@ -107,6 +108,12 @@ const SIMS = {
         scenario: ['dataset', 'machine'],
         // The saved pipeline gives the student's own result again.
         restore: {missing: 'missing', outliers: 'outliers', scaling: 'scaling', k: 'k'},
+    },
+    'rnn': {
+        Engine: RnnSim,
+        scenario: ['dataset', 'temperature'],
+        // The saved weights (and sequence length) give the student's own network again.
+        restore: {w: 'w', u: 'u', v: 'v', length: 'length'},
     },
 };
 

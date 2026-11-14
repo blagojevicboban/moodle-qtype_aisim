@@ -5,6 +5,15 @@ All notable changes to the **AI Simulation Question Type (`qtype_aisim`)** will 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.14.0] - 2026-11-14
+
+### Added
+- Recurrent Neural Network (RNN) simulation type (requires filter_aisim 0.14.0). Target Metric 1 is the maximum loss
+  (MSE), Target Metric 2 the minimum number of past inputs the network still remembers (0 = no limit); meeting only
+  the loss gives half marks.
+- Three recurrent network questions in the demo bank (now 39).
+- Teacher guide 1.5 (`docs/`).
+
 ## [0.13.0] - 2026-11-14
 
 ### Added

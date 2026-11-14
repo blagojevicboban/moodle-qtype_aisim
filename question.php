@@ -340,6 +340,21 @@ class qtype_aisim_question extends question_graded_automatically {
                 }
                 break;
 
+            case 'rnn':
+                // The loss of the network, with an optional minimum number of past inputs it still remembers.
+                $lossok = ((float)($metrics['loss'] ?? 999.0) <= (float)$this->targetparam1);
+                $minsteps = (int)$this->targetparam2;
+                $memok = ($minsteps <= 0 || (int)($metrics['remembered'] ?? 0) >= $minsteps);
+
+                if ($lossok && $memok) {
+                    $fraction = 1.0;
+                } else if ($lossok) {
+                    $fraction = 0.5;
+                } else {
+                    $fraction = 0.0;
+                }
+                break;
+
             case 'kmeans':
                 $wcss = (float)($metrics['wcss'] ?? 999999.0);
                 $k = (int)($params['k'] ?? 0);
@@ -460,6 +475,14 @@ class qtype_aisim_question extends question_graded_automatically {
                 $k = $p['k'] ?? '?';
                 return "Pipeline: {$steps}, k = {$k}, Accuracy: {$pct('accuracy')}, Recall: {$pct('recall')}";
 
+            case 'rnn':
+                $num = fn($key) => isset($p[$key]) ? sprintf('%.2f', $p[$key]) : '?';
+                [$w, $u, $v] = [$num('w'), $num('u'), $num('v')];
+                $length = isset($p['length']) ? ", L = {$p['length']}" : '';
+                $loss = isset($m['loss']) ? sprintf('%.4f', $m['loss']) : '?';
+                $remembered = $m['remembered'] ?? '?';
+                return "w = {$w}, u = {$u}, v = {$v}{$length}, Loss: {$loss}, Remembers: {$remembered} inputs";
+
             case 'data_bias':
                 $pct = fn($key) => isset($m[$key]) ? round($m[$key] * 100) . '%' : '?';
                 $n = $p['n'] ?? '?';
@@ -535,6 +558,12 @@ class qtype_aisim_question extends question_graded_automatically {
                     $parts[] = get_string('rightsummary_log_recall', 'qtype_aisim', round($this->targetparam2 * 100));
                 }
                 return implode(', ', $parts);
+
+            case 'rnn':
+                $loss = sprintf('%.3f', $this->targetparam1);
+                $steps = (int)$this->targetparam2;
+                $key = $steps > 0 ? 'rightsummary_rnn' : 'rightsummary_rnn_any';
+                return get_string($key, 'qtype_aisim', (object)['loss' => $loss, 'steps' => $steps]);
 
             case 'cross_validation':
                 $mse = sprintf('%.3f', $this->targetparam1);
