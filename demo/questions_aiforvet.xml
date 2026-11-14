@@ -3,10 +3,10 @@
 <!-- question: 0  -->
   <question type="category">
     <category>
-      <text>$course$/top/AI za VET - Baza simulacionih zadataka (30 pitanja)</text>
+      <text>$course$/top/AI za VET - Baza simulacionih zadataka (33 pitanja)</text>
     </category>
     <info format="html">
-      <text>Kompletna baza sa 30 interaktivnih zadataka sa automatskim ocenjivanjem za projekat AI for VET (Erasmus+), razvrstanih u 3 nivoa težine po svim simulacionim modulima.</text>
+      <text>Kompletna baza sa 33 interaktivnih zadataka sa automatskim ocenjivanjem za projekat AI for VET (Erasmus+), razvrstanih u 3 nivoa težine po svim simulacionim modulima.</text>
     </info>
     <idnumber></idnumber>
   </question>
@@ -1077,6 +1077,109 @@
     <correctfeedbackformat>1</correctfeedbackformat>
     <partiallycorrectfeedback format="html">
       <text><![CDATA[<p>Delimično tačno. Tačnost je dovoljna, ali odziv ili preciznost još ne ispunjavaju uslov.</p>]]></text>
+    </partiallycorrectfeedback>
+    <partiallycorrectfeedbackformat>1</partiallycorrectfeedbackformat>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Netačno. Pokušajte ponovo da promenite parametre.</p>]]></text>
+    </incorrectfeedback>
+    <incorrectfeedbackformat>1</incorrectfeedbackformat>
+    <shownumcorrect>0</shownumcorrect>
+  </question>
+
+  <question type="aisim">
+    <name>
+      <text>CV-01: Izbor stepena polinoma (Osnovni nivo)</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Merenja prate talasasti signal sa šumom. Stepen polinoma je <strong>hiperparametar</strong>. Unakrsnom validacijom sa <strong>najmanje 5 delova (k &ge; 5)</strong> izaberite stepen čija je <strong>CV MSE &le; 0,11</strong>.</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text><![CDATA[<p>Greška na treningu uvek opada sa stepenom, pa ne može da izabere model. Prosečna greška na izdvojenim delovima (unakrsna validacija) pokazuje koji stepen najbolje radi na podacima koje model nije video.</p>]]></text>
+    </generalfeedback>
+    <defaultgrade>1</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <simtype>cross_validation</simtype>
+    <scenario>sine</scenario>
+    <targetparam1>0.1100</targetparam1>
+    <targetparam2>5.0000</targetparam2>
+    <targettolerance>0.0000</targettolerance>
+    <simconfig><![CDATA[{"degree":1}]]></simconfig>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Odlično! Simulacioni model je konvergirao u optimalnu zonu.</p>]]></text>
+    </correctfeedback>
+    <correctfeedbackformat>1</correctfeedbackformat>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Delimično tačno. Greška je dovoljno mala, ali je procenjena sa premalo delova (k).</p>]]></text>
+    </partiallycorrectfeedback>
+    <partiallycorrectfeedbackformat>1</partiallycorrectfeedbackformat>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Netačno. Pokušajte ponovo da promenite parametre.</p>]]></text>
+    </incorrectfeedback>
+    <incorrectfeedbackformat>1</incorrectfeedbackformat>
+    <shownumcorrect>0</shownumcorrect>
+  </question>
+  <question type="aisim">
+    <name>
+      <text>CV-02: Kriva zagrevanja senzora (Srednji nivo)</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Senzor se zagreva po krivoj sa šumom. Sa <strong>k = 10 delova</strong> izaberite stepen polinoma tako da <strong>CV MSE bude &le; 0,09</strong>. Zatim pritisnite „Završni test” i uporedite grešku na testu sa procenom unakrsne validacije.</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text><![CDATA[<p>Kada su podaci jednostavni, niski stepen je dovoljan. Više delova daje stabilniju procenu, jer svaki model uči iz skoro svih podataka.</p>]]></text>
+    </generalfeedback>
+    <defaultgrade>2</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <simtype>cross_validation</simtype>
+    <scenario>sensor</scenario>
+    <targetparam1>0.0900</targetparam1>
+    <targetparam2>10.0000</targetparam2>
+    <targettolerance>0.0000</targettolerance>
+    <simconfig><![CDATA[{"degree":9,"k":2}]]></simconfig>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Odlično! Simulacioni model je konvergirao u optimalnu zonu.</p>]]></text>
+    </correctfeedback>
+    <correctfeedbackformat>1</correctfeedbackformat>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Delimično tačno. Greška je dovoljno mala, ali je procenjena sa premalo delova (k).</p>]]></text>
+    </partiallycorrectfeedback>
+    <partiallycorrectfeedbackformat>1</partiallycorrectfeedbackformat>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Netačno. Pokušajte ponovo da promenite parametre.</p>]]></text>
+    </incorrectfeedback>
+    <incorrectfeedbackformat>1</incorrectfeedbackformat>
+    <shownumcorrect>0</shownumcorrect>
+  </question>
+  <question type="aisim">
+    <name>
+      <text>CV-03: Malo podataka, mnogo šuma (Napredni nivo)</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Merenja imaju mnogo šuma. Sa 2 dela najbolji stepen „skače” sa svakom novom podelom (🎲). Postignite <strong>CV MSE &le; 0,80</strong> sa <strong>najmanje 10 delova</strong> i objasnite zašto je procena sa 2 dela nepouzdana.</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text><![CDATA[<p>Sa malo podataka i mnogo šuma svaka podela daje drugačiji rezultat. Unakrsna validacija sa više delova usrednjava tu slučajnost.</p>]]></text>
+    </generalfeedback>
+    <defaultgrade>2</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <simtype>cross_validation</simtype>
+    <scenario>noisy</scenario>
+    <targetparam1>0.8000</targetparam1>
+    <targetparam2>10.0000</targetparam2>
+    <targettolerance>0.0000</targettolerance>
+    <simconfig><![CDATA[{"k":2}]]></simconfig>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Odlično! Simulacioni model je konvergirao u optimalnu zonu.</p>]]></text>
+    </correctfeedback>
+    <correctfeedbackformat>1</correctfeedbackformat>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Delimično tačno. Greška je dovoljno mala, ali je procenjena sa premalo delova (k).</p>]]></text>
     </partiallycorrectfeedback>
     <partiallycorrectfeedbackformat>1</partiallycorrectfeedbackformat>
     <incorrectfeedback format="html">

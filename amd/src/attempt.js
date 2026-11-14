@@ -31,6 +31,7 @@ import {ConvolutionSim} from 'filter_aisim/sims/convolution';
 import {QLearningSim} from 'filter_aisim/sims/q_learning';
 import {DataBiasSim} from 'filter_aisim/sims/data_bias';
 import {LogisticSim} from 'filter_aisim/sims/logistic';
+import {CrossValidationSim} from 'filter_aisim/sims/cross_validation';
 import {load as loadStrings} from 'filter_aisim/strings';
 import Notification from 'core/notification';
 
@@ -93,6 +94,12 @@ const SIMS = {
         scenario: ['dataset', 'machine'],
         // The saved weights and threshold give the student's own model again.
         restore: {w1: 'w1', w2: 'w2', b: 'b', threshold: 'threshold', lr: 'lr', epochs: 'epochs'},
+    },
+    'cross_validation': {
+        Engine: CrossValidationSim,
+        scenario: ['dataset', 'sine'],
+        // The same seed gives the same folds, so the review shows the student's own validation.
+        restore: {k: 'k', degree: 'degree', seed: 'seed', tested: 'tested'},
     },
 };
 

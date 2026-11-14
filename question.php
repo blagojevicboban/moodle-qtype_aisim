@@ -311,6 +311,21 @@ class qtype_aisim_question extends question_graded_automatically {
                 }
                 break;
 
+            case 'cross_validation':
+                // The validation error of the chosen degree, estimated with at least the required number of folds.
+                $mseok = ((float)($metrics['cvMse'] ?? 999.0) <= (float)$this->targetparam1);
+                $minfolds = (int)$this->targetparam2;
+                $foldsok = ($minfolds <= 0 || (int)($params['k'] ?? 0) >= $minfolds);
+
+                if ($mseok && $foldsok) {
+                    $fraction = 1.0;
+                } else if ($mseok) {
+                    $fraction = 0.5;
+                } else {
+                    $fraction = 0.0;
+                }
+                break;
+
             case 'kmeans':
                 $wcss = (float)($metrics['wcss'] ?? 999999.0);
                 $k = (int)($params['k'] ?? 0);
@@ -417,6 +432,14 @@ class qtype_aisim_question extends question_graded_automatically {
                 [$acc, $prec, $rec] = [$pct('accuracy'), $pct('precision'), $pct('recall')];
                 return "w1 = {$w1}, w2 = {$w2}, b = {$b}, θ = {$th}, Accuracy: {$acc}, Precision: {$prec}, Recall: {$rec}";
 
+            case 'cross_validation':
+                $num = fn($key) => isset($m[$key]) ? sprintf('%.3f', $m[$key]) : '?';
+                $k = $p['k'] ?? '?';
+                $d = $p['degree'] ?? '?';
+                $best = $m['bestDegree'] ?? '?';
+                $test = isset($m['testMse']) ? sprintf('%.3f', $m['testMse']) : '–';
+                return "k = {$k}, d = {$d}, CV MSE: {$num('cvMse')} ± {$num('cvSd')}, Best d by CV: {$best}, Test MSE: {$test}";
+
             case 'data_bias':
                 $pct = fn($key) => isset($m[$key]) ? round($m[$key] * 100) . '%' : '?';
                 $n = $p['n'] ?? '?';
@@ -485,6 +508,12 @@ class qtype_aisim_question extends question_graded_automatically {
                     $parts[] = get_string('rightsummary_log_precision', 'qtype_aisim', round($this->targettolerance * 100));
                 }
                 return implode(', ', $parts);
+
+            case 'cross_validation':
+                $mse = sprintf('%.3f', $this->targetparam1);
+                $k = (int)$this->targetparam2;
+                $key = $k > 0 ? 'rightsummary_cv' : 'rightsummary_cv_any';
+                return get_string($key, 'qtype_aisim', (object)['mse' => $mse, 'k' => $k]);
 
             case 'data_bias':
                 $acc = round($this->targetparam1 * 100);

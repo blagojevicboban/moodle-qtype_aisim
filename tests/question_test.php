@@ -113,6 +113,9 @@ final class question_test extends \advanced_testcase {
                 0.5],
             'logistic, precision missed' => ['logistic', 0.8, 0.6, 0.88, [], ['accuracy' => 0.8, 'recall' => 0.81,
                 'precision' => 0.808], 0.5],
+            'cross-validation, enough folds' => ['cross_validation', 0.1, 5, 0, ['k' => 5, 'degree' => 4], ['cvMse' => 0.098], 1.0],
+            'cross-validation, too few folds' => ['cross_validation', 0.1, 5, 0, ['k' => 2, 'degree' => 4], ['cvMse' => 0.09], 0.5],
+            'cross-validation, overfitted' => ['cross_validation', 0.1, 5, 0, ['k' => 5, 'degree' => 8], ['cvMse' => 0.36], 0.0],
             'logistic, untrained' => ['logistic', 0.95, 0, 0, [], ['accuracy' => 0.48, 'recall' => 1, 'precision' => 0.48], 0.0],
         ];
     }
@@ -205,6 +208,14 @@ final class question_test extends \advanced_testcase {
             ['accuracy' => 0.94, 'recall' => 1, 'precision' => 0.889]
         ));
         $this->assertStringContainsString('θ = 0.20, Accuracy: 94%, Precision: 89%, Recall: 100%', $summary);
+
+        $q = $this->make_question('cross_validation', 0.1, 5);
+        $summary = $q->summarise_response($this->response(
+            'cross_validation',
+            ['k' => 5, 'degree' => 4, 'seed' => 1, 'tested' => true],
+            ['cvMse' => 0.0983, 'cvSd' => 0.0451, 'bestDegree' => 4, 'testMse' => 0.152]
+        ));
+        $this->assertStringContainsString('k = 5, d = 4, CV MSE: 0.098 ± 0.045, Best d by CV: 4, Test MSE: 0.152', $summary);
     }
 
     /**
@@ -229,6 +240,10 @@ final class question_test extends \advanced_testcase {
             $this->make_question('data_bias', 0.88, 120)->get_right_answer_summary()
         );
         $this->assertSame('Accuracy ≥ 95%', $this->make_question('logistic', 0.95, 0)->get_right_answer_summary());
+        $this->assertSame(
+            'Cross-validation MSE ≤ 0.100 with at least 5 folds',
+            $this->make_question('cross_validation', 0.1, 5)->get_right_answer_summary()
+        );
         $this->assertSame(
             'Accuracy ≥ 90%, recall ≥ 100%, precision ≥ 85%',
             $this->make_question('logistic', 0.9, 1, 0.85)->get_right_answer_summary()
